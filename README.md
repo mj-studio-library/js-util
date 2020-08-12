@@ -11,7 +11,7 @@ npm install @mj-studio/js-util
 ```
 
 ---
-### Items
+### Usage
 
 * `isPromise` : check is promise
 * `isPlainObject` : check is plain object
