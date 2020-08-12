@@ -1,4 +1,7 @@
-JavaScript utilities for MJ Studio
+## JavaScript utilities for MJ Studio
+
+![JS Check](https://github.com/mym0404/mj-studio-js-util/workflows/JS%20Check/badge.svg)
+---
 
 * `isPromise` : check is promise
 * `isPlainObject` : check is plain object
