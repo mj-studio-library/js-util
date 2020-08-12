@@ -1,4 +1,4 @@
-import convertCamelCaseFromSnakeCase from './convertCamelCaseFromSnakeCase';
+import camelCase from './camelCase';
 import isPlainObject from './isPlainObject';
 
 export type JSONCandidate = any[] | object;
@@ -10,7 +10,7 @@ function isObject(objOrArray: JSONCandidate): objOrArray is object {
   return typeof objOrArray === 'object' && objOrArray !== null;
 }
 
-function convertObjectKeysCamelCaseFromSnakeCase(objOrArr: any): JSONCandidate {
+function camelCaseObject(objOrArr: any): JSONCandidate {
   if (objOrArr === 0 || objOrArr === null) {
     return objOrArr;
   }
@@ -20,21 +20,21 @@ function convertObjectKeysCamelCaseFromSnakeCase(objOrArr: any): JSONCandidate {
   if (!isArray(objOrArr) && !isObject(objOrArr)) return objOrArr;
 
   if (isArray(objOrArr)) {
-    return objOrArr.map(convertObjectKeysCamelCaseFromSnakeCase);
+    return objOrArr.map(camelCaseObject);
   } else {
-    const camelCaseObject: object = {};
+    const result: object = {};
 
     Object.entries(objOrArr).forEach(([key, value]) => {
       if (isPlainObject(value)) {
-        value = convertObjectKeysCamelCaseFromSnakeCase(value);
+        value = camelCaseObject(value);
       } else if (isArray(value)) {
-        value = value.map((v) => (isPlainObject(v) ? convertObjectKeysCamelCaseFromSnakeCase(v) : v));
+        value = value.map((v) => (isPlainObject(v) ? camelCaseObject(v) : v));
       }
-      camelCaseObject[convertCamelCaseFromSnakeCase(key)] = value;
+      result[camelCase(key)] = value;
     });
 
-    return camelCaseObject;
+    return result;
   }
 }
 
-export default convertObjectKeysCamelCaseFromSnakeCase;
+export default camelCaseObject;
