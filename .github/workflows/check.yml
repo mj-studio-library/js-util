@@ -1,8 +1,8 @@
 name: JS Check
 on:
   push:
-    paths:
-      - 'src/**'
+    branches: 
+      - master
 
 defaults:
   run:
