@@ -1,7 +1,7 @@
 {
   "name": "mj-studio-js-util",
   "version": "0.0.1",
-  "description": "Custom JavaScript Utilities",
+  "description": "Custom JavaScript Utilities for MJ Studio",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "homepage": "https://github.com/mym0404/mj-studio-js-util",
