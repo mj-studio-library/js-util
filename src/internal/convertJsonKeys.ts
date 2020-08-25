@@ -1,4 +1,9 @@
-export default function convertJsonKeys(json: any, serializedNames: { [P in string]: string }): any {
+export default function convertJsonKeys(
+  json: Record<string, unknown> | any[],
+  serializedNames: { [P in string]: string },
+): any {
+  if (!json || (typeof json !== 'object' && !Array.isArray(json))) return json;
+
   let jsonString = JSON.stringify(json);
 
   Object.entries(serializedNames).forEach(([original, serialized]) => {

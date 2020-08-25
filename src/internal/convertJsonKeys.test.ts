@@ -1,5 +1,23 @@
 import convertJsonKeys from './convertJsonKeys';
 
+it('Falsy values return itself', () => {
+  expect(convertJsonKeys(undefined, {})).toBeUndefined();
+  expect(convertJsonKeys(null, {})).toBeNull();
+  // @ts-ignore
+  expect(convertJsonKeys('', {})).toEqual('');
+});
+
+it('not Array and not object values return itself', () => {
+  // @ts-ignore
+  expect(convertJsonKeys('str', {})).toEqual('str');
+
+  // @ts-ignore
+  expect(convertJsonKeys(123, {})).toEqual(123);
+
+  // @ts-ignore
+  expect(convertJsonKeys(true, {})).toEqual(true);
+});
+
 it('simple', () => {
   expect(convertJsonKeys({ a: 1 }, { a: 'b' })).toEqual({ b: 1 });
 
