@@ -18,3 +18,4 @@ npm install @mj-studio/js-util
 * `camelCase` : convert snake_case string to camelCase
 * `camelCaseObject` : convert keys of object to camelCased 
 * `convertJsonKeys` : convert keys of json object to something others
+* `reverseObjectKeyValues` : reverse key and value in object
