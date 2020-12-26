@@ -19,6 +19,8 @@ npm install @mj-studio/js-util
 * `camelCaseObject` : convert keys of object to camelCased 
 * `convertJsonKeys` : convert keys of json object to something others
 * `reverseObjectKeyValues` : reverse key and value in object
+* `groupByArray` : group object as arrays with key a provider callback
+* `groupByObject` : group object as objects with key a provider callback
 
 #### Promise helper
 * `withTimeout` : set max running time of promise, if exceeds it will reject.
