@@ -21,6 +21,7 @@ npm install @mj-studio/js-util
 * `reverseObjectKeyValues` : reverse key and value in object
 * `groupByArray` : group object as arrays with key a provider callback
 * `groupByObject` : group object as objects with key a provider callback
+* `doBatch` : with list, do something with batched manner
 
 #### Promise helper
 * `withTimeout` : set max running time of promise, if exceeds it will reject.
