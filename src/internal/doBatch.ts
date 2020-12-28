@@ -1,4 +1,4 @@
-export default function doBatch<T>(list: T[], work: (list: T[], batchIndex: number) => any, batchCount: number) {
+export default function doBatch<T, R>(list: T[], work: (list: T[], batchIndex: number) => R, batchCount: number): R[] {
   if (!Array.isArray(list)) return;
 
   let batchIndex = 0;
@@ -8,10 +8,14 @@ export default function doBatch<T>(list: T[], work: (list: T[], batchIndex: numb
     batchIteration++;
   }
 
+  const returns: R[] = [];
+
   for (let i = 0; batchIndex < batchIteration; i += batchCount) {
     const batch = list.slice(i, i + batchCount);
 
-    work(batch, batchIndex);
+    returns.push(work(batch, batchIndex));
     batchIndex++;
   }
+
+  return returns;
 }

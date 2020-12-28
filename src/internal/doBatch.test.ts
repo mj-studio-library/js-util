@@ -49,3 +49,30 @@ it('not array', () => {
   expect.assertions(0);
   doBatch(undefined as any, () => {}, 4);
 });
+
+it('simple return', () => {
+  const returns = doBatch(
+    [1, 2, 3],
+    (list) => {
+      return list[0];
+    },
+    1,
+  );
+
+  expect(returns).toHaveLength(3);
+  expect(returns[0]).toBe(1);
+});
+
+it('Promise return', async () => {
+  const returns = doBatch(
+    [1, 2, 3],
+    async (list) => {
+      return list[0];
+    },
+    1,
+  );
+
+  expect(returns).toHaveLength(3);
+  expect(await returns[0]).toBe(1);
+  expect(await Promise.all(returns)).toEqual([1, 2, 3]);
+});
