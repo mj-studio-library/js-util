@@ -6,7 +6,9 @@ export default function groupByObject<T, K extends string | number>(
 ): GroupByObject<T, K> {
   return collection.reduce((acc: any, cur) => {
     const key = typeof getKey === 'function' ? getKey(cur) : getKey;
+
     (acc[key] = acc[key] || []).push(cur);
+
     return acc;
   }, {}) as GroupByObject<T, K>;
 }

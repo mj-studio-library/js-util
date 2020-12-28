@@ -2,6 +2,7 @@ import camelCaseObject, { JSONCandidate } from './internal/camelCaseObject';
 
 import camelCase from './internal/camelCase';
 import convertJsonKeys from './internal/convertJsonKeys';
+import doBatch from './internal/doBatch';
 import groupByArray from './internal/groupByArray';
 import groupByObject from './internal/groupByObject';
 import isPlainObject from './internal/isPlainObject';
@@ -22,4 +23,5 @@ export {
   reverseObjectKeyValues,
   groupByArray,
   groupByObject,
+  doBatch,
 };

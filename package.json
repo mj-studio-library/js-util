@@ -20,16 +20,15 @@
   "author": "MJ Studio <mym0404@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@dooboo/eslint-config": "^0.4.3",
-    "@types/eslint": "^7.2.0",
+    "@dooboo/eslint-config": "0.5.8",
     "@types/jest": "^26.0.9",
-    "eslint": "^7.6.0",
-    "import-sort-style-eslint": "^6.0.0",
+    "eslint": "7.16.0",
+    "import-sort-style-eslint": "6.0.0",
     "jest": "^26.3.0",
-    "prettier": "^2.0.5",
-    "prettier-plugin-import-sort": "^0.0.4",
-    "ts-jest": "^26.2.0",
-    "typescript": "^3.9.7"
+    "prettier": "2.2.1",
+    "prettier-plugin-import-sort": "0.0.6",
+    "ts-jest": "26.4.4",
+    "typescript": "4.1.3"
   },
   "importSort": {
     ".js, .jsx": {

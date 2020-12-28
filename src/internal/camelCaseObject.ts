@@ -3,7 +3,7 @@ import isPlainObject from './isPlainObject';
 
 export type JSONCandidate = any[] | object;
 
-function isArray<T>(objOrArray: JSONCandidate): objOrArray is any[] {
+function isArray(objOrArray: JSONCandidate): objOrArray is any[] {
   return Array.isArray(objOrArray);
 }
 function isObject(objOrArray: JSONCandidate): objOrArray is object {
@@ -30,6 +30,7 @@ function camelCaseObject(objOrArr: any): JSONCandidate {
       } else if (isArray(value)) {
         value = value.map((v) => (isPlainObject(v) ? camelCaseObject(v) : v));
       }
+
       result[camelCase(key)] = value;
     });
 

@@ -1,5 +1,7 @@
 export default function groupByArray<T, K extends string | number>(
-  collection: T[], getKey: ((element: T) => K) | K): T[][] {
+  collection: T[],
+  getKey: ((element: T) => K) | K,
+): T[][] {
   const keyIndexMap: Map<K, number> = new Map();
 
   return collection.reduce((acc: any[], cur: T) => {
@@ -9,6 +11,7 @@ export default function groupByArray<T, K extends string | number>(
       acc[keyIndexMap.get(key) as number].push(cur);
     } else {
       const nextIndex = acc.length;
+
       keyIndexMap.set(key, nextIndex);
       acc[nextIndex] = [cur];
     }

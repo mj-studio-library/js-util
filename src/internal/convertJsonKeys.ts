@@ -8,6 +8,7 @@ export default function convertJsonKeys<T extends Record<string, unknown> | any[
 
   Object.entries(serializedNames).forEach(([original, serialized]) => {
     const regex = new RegExp(`\"${original}\":`, 'g');
+
     jsonString = jsonString.replace(regex, `\"${serialized}\":`);
   });
 
