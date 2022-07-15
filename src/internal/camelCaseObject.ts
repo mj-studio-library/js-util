@@ -15,7 +15,7 @@ function camelCaseObject(objOrArr: any): JSONCandidate {
     return objOrArr;
   }
 
-  if (!objOrArr) return {};
+  if (!objOrArr) return objOrArr;
 
   if (!isArray(objOrArr) && !isObject(objOrArr)) return objOrArr;
 

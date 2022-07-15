@@ -73,7 +73,7 @@ describe('camelCase function test', (): void => {
     });
   });
 
-  it('undefined should return empty object', () => {
-    expect(toCamelCase(undefined)).toEqual({});
+  it('undefined should return undefined', () => {
+    expect(toCamelCase(undefined)).toBeUndefined()
   });
 });
