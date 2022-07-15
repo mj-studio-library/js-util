@@ -1,7 +1,7 @@
 import camelCase from './camelCase';
 import isPlainObject from './isPlainObject';
 
-export type JSONCandidate = any[] | object;
+export type JSONCandidate = any[] | object | undefined | null | string | number | boolean;
 
 function isArray(objOrArray: JSONCandidate): objOrArray is any[] {
   return Array.isArray(objOrArray);
@@ -10,7 +10,7 @@ function isObject(objOrArray: JSONCandidate): objOrArray is object {
   return typeof objOrArray === 'object' && objOrArray !== null;
 }
 
-function camelCaseObject(objOrArr: any): JSONCandidate {
+function camelCaseObject(objOrArr: JSONCandidate): JSONCandidate {
   if (objOrArr === 0 || objOrArr === null) {
     return objOrArr;
   }
