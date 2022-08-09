@@ -1,4 +1,5 @@
 import toCamelCase from './camelCaseObject';
+import {camelCaseObject, camelCase} from "../index";
 
 describe('camelCase function test', (): void => {
   it('general object to camelCase', (): void => {
@@ -76,4 +77,38 @@ describe('camelCase function test', (): void => {
   it('undefined should return undefined', () => {
     expect(toCamelCase(undefined)).toBeUndefined()
   });
+
+  it('nested array', () => {
+
+
+    const obj = {
+      summary_cards: [
+        [
+          {
+            "type": "bar",
+            "title": "이전 결과",
+            "description": "1/2개",
+            "bar_color": "#FFC107",
+            "total_solved_problem_count": 2,
+            "correct_solved_problem_count": 1
+          },
+        ]
+      ]
+    } as const;
+
+    expect(camelCaseObject(obj)).toEqual({
+      summaryCards: [
+        [
+          {
+            "type": "bar",
+            "title": "이전 결과",
+            "description": "1/2개",
+            "barColor": "#FFC107",
+            "totalSolvedProblemCount": 2,
+            "correctSolvedProblemCount": 1
+          }
+        ]
+      ]
+    })
+  })
 });

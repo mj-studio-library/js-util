@@ -6,9 +6,6 @@ export type JSONCandidate = any[] | object | undefined | null | string | number 
 function isArray(objOrArray: JSONCandidate): objOrArray is any[] {
   return Array.isArray(objOrArray);
 }
-function isObject(objOrArray: JSONCandidate): objOrArray is object {
-  return typeof objOrArray === 'object' && objOrArray !== null;
-}
 
 function camelCaseObject(objOrArr: JSONCandidate): JSONCandidate {
   if (objOrArr === 0 || objOrArr === null) {
@@ -17,7 +14,7 @@ function camelCaseObject(objOrArr: JSONCandidate): JSONCandidate {
 
   if (!objOrArr) return objOrArr;
 
-  if (!isArray(objOrArr) && !isObject(objOrArr)) return objOrArr;
+  if (!isArray(objOrArr) && !isPlainObject(objOrArr)) return objOrArr;
 
   if (isArray(objOrArr)) {
     return objOrArr.map(camelCaseObject);
@@ -28,7 +25,7 @@ function camelCaseObject(objOrArr: JSONCandidate): JSONCandidate {
       if (isPlainObject(value)) {
         value = camelCaseObject(value);
       } else if (isArray(value)) {
-        value = value.map((v) => (isPlainObject(v) ? camelCaseObject(v) : v));
+        value = value.map(camelCaseObject);
       }
 
       result[camelCase(key)] = value;
