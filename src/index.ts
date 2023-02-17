@@ -1,4 +1,5 @@
 import camelCaseObject, { JSONCandidate } from './internal/camelCaseObject';
+import replaceJsonKeys, { ReplaceJsonKeysOptions } from './internal/replaceJsonKeys';
 
 import camelCase from './internal/camelCase';
 import convertJsonKeys from './internal/convertJsonKeys';
@@ -7,7 +8,6 @@ import groupByArray from './internal/groupByArray';
 import groupByObject from './internal/groupByObject';
 import isPlainObject from './internal/isPlainObject';
 import isPromise from './internal/isPromise';
-import replaceJsonKeys, { ReplaceJsonKeysOptions } from './internal/replaceJsonKeys';
 import reverseObjectKeyValues from './internal/reverseObjectKeyValues';
 import withMinimumResolveTime from './internal/promise/withMinimumResolveTime';
 import withTimeout from './internal/promise/withTimeout';
