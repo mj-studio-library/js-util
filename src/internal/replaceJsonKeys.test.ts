@@ -9,8 +9,8 @@ it('Falsy values return itself', () => {
 
 
 it('simple', () => {
-  expect(replaceJsonKeys({ a: 1 }, { a: 'b' })).toEqual({ a: 'b' });
-  expect(replaceJsonKeys({ a: 1 }, { a: (value) => value * 2})).toEqual({ a: 2 });
+  expect(replaceJsonKeys({ a: 1 }, { replaceMap: {a: 'b'} })).toEqual({ a: 'b' });
+  expect(replaceJsonKeys({ a: 1 }, { replaceMap: {a: (value) => value * 2}})).toEqual({ a: 2 });
 });
 
 it('complex', () => {
@@ -22,7 +22,7 @@ it('complex', () => {
         need_problem_number: 2,
         is_problem_exist: true,
       },
-      { current_user_high_ratio_100: 'userHighRatio' },
+      { replaceMap: {current_user_high_ratio_100: 'userHighRatio'} },
     ),
   ).toEqual({
     current_user_high_ratio_100: 'userHighRatio',
@@ -34,6 +34,6 @@ it('complex', () => {
 
 it('strip undefined', () => {
   expect(replaceJsonKeys({ a: 1, b: undefined }, {  })).toEqual({ a: 1 });
-  expect(replaceJsonKeys({ a: 1, b: undefined }, { a: () => undefined })).toEqual({  });
-  expect(replaceJsonKeys({ a: 1, b: undefined }, { a: () => undefined }, false)).toEqual({ a: undefined, b: undefined });
+  expect(replaceJsonKeys({ a: 1, b: undefined }, { replaceMap: {a: () => undefined} })).toEqual({  });
+  expect(replaceJsonKeys({ a: 1, b: undefined },   {stripUndefined: false, replaceMap: {a: () => undefined}})).toEqual({ a: undefined, b: undefined });
 });
