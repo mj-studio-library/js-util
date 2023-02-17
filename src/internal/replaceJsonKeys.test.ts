@@ -30,5 +30,10 @@ it('complex', () => {
     need_problem_number: 2,
     is_problem_exist: true,
   });
+});
 
+it('strip undefined', () => {
+  expect(replaceJsonKeys({ a: 1, b: undefined }, {  })).toEqual({ a: 1 });
+  expect(replaceJsonKeys({ a: 1, b: undefined }, { a: () => undefined })).toEqual({  });
+  expect(replaceJsonKeys({ a: 1, b: undefined }, { a: () => undefined }, false)).toEqual({ a: undefined, b: undefined });
 });

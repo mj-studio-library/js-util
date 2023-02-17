@@ -5,7 +5,8 @@ function isArray(objOrArray: JSONCandidate): objOrArray is any[] {
   return Array.isArray(objOrArray);
 }
 
-export default function replaceJsonKeys(objOrArr: JSONCandidate, replaceMap: Record<string, any>): JSONCandidate {
+// eslint-disable-next-line max-len
+export default function replaceJsonKeys(objOrArr: JSONCandidate, replaceMap: Record<string, any>, stripUndefined = true): JSONCandidate {
   if (!objOrArr) return objOrArr;
 
   if (!isArray(objOrArr) && !isPlainObject(objOrArr)) return objOrArr;
@@ -31,6 +32,8 @@ export default function replaceJsonKeys(objOrArr: JSONCandidate, replaceMap: Rec
       } else {
         result[key] = value;
       }
+
+      if (stripUndefined && typeof result[key] === 'undefined') delete result[key];
     });
 
     return result;
