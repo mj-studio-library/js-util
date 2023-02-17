@@ -23,7 +23,7 @@ it('not object values return itself', () => {
 
 it('all string or number values are converted', () => {
   const source = { name: 'hi', age: 1 };
-  const dest = { hi: 'name', '1': 'age' };
+  const dest = { hi: 'name', 1: 'age' };
 
   expect(reverseObjectKeyValues(source)).toEqual(dest);
 });

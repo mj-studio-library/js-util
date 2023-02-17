@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: '@dooboo/eslint-config',
+  extends: ['@react-native-community', 'prettier'],
   rules: {
     'max-len': [
       'error',

@@ -1,5 +1,5 @@
+import { camelCaseObject } from '../index';
 import toCamelCase from './camelCaseObject';
-import {camelCaseObject, camelCase} from "../index";
 
 describe('camelCase function test', (): void => {
   it('general object to camelCase', (): void => {
@@ -51,9 +51,11 @@ describe('camelCase function test', (): void => {
 
   it('change array to camelCase2', (): void => {
     const numberArray = [0, 1, 2, 3, 4];
+
     expect(toCamelCase(numberArray)).toEqual([0, 1, 2, 3, 4]);
 
     const stringArray = ['2001', '2002', '2003'];
+
     expect(toCamelCase(stringArray)).toEqual(['2001', '2002', '2003']);
   });
 
@@ -61,10 +63,9 @@ describe('camelCase function test', (): void => {
     class Class {
       constructor(public name: string, private birth: number) {}
 
-      sayMyName() {
-        console.error('My name is ' + this.name);
-      }
+      sayMyName() {}
     }
+
     const instance = new Class('mj', 1997);
 
     const obj = { a_b_c: instance };
@@ -75,40 +76,38 @@ describe('camelCase function test', (): void => {
   });
 
   it('undefined should return undefined', () => {
-    expect(toCamelCase(undefined)).toBeUndefined()
+    expect(toCamelCase(undefined)).toBeUndefined();
   });
 
   it('nested array', () => {
-
-
     const obj = {
       summary_cards: [
         [
           {
-            "type": "bar",
-            "title": "이전 결과",
-            "description": "1/2개",
-            "bar_color": "#FFC107",
-            "total_solved_problem_count": 2,
-            "correct_solved_problem_count": 1
+            type: 'bar',
+            title: '이전 결과',
+            description: '1/2개',
+            bar_color: '#FFC107',
+            total_solved_problem_count: 2,
+            correct_solved_problem_count: 1,
           },
-        ]
-      ]
+        ],
+      ],
     } as const;
 
     expect(camelCaseObject(obj)).toEqual({
       summaryCards: [
         [
           {
-            "type": "bar",
-            "title": "이전 결과",
-            "description": "1/2개",
-            "barColor": "#FFC107",
-            "totalSolvedProblemCount": 2,
-            "correctSolvedProblemCount": 1
-          }
-        ]
-      ]
-    })
-  })
+            type: 'bar',
+            title: '이전 결과',
+            description: '1/2개',
+            barColor: '#FFC107',
+            totalSolvedProblemCount: 2,
+            correctSolvedProblemCount: 1,
+          },
+        ],
+      ],
+    });
+  });
 });

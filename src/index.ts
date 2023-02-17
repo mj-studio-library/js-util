@@ -4,6 +4,7 @@ import replaceJsonKeys, { ReplaceJsonKeysOptions } from './internal/replaceJsonK
 import camelCase from './internal/camelCase';
 import convertJsonKeys from './internal/convertJsonKeys';
 import doBatch from './internal/doBatch';
+import filterJsonKeys from './internal/filterJsonKeys';
 import groupByArray from './internal/groupByArray';
 import groupByObject from './internal/groupByObject';
 import isPlainObject from './internal/isPlainObject';
@@ -27,4 +28,5 @@ export {
   groupByObject,
   doBatch,
   replaceJsonKeys,
+  filterJsonKeys,
 };

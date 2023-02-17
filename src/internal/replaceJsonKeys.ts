@@ -7,12 +7,13 @@ function isArray(objOrArray: JSONCandidate): objOrArray is any[] {
 
 export type ReplaceJsonKeysOptions = {
   stripUndefined?: boolean;
-  keyFilter?: ((key: string) => boolean) | string[] | string
-  replaceMap?: Record<string, any>
-}
+  replaceMap?: Record<string, any>;
+};
 
-// eslint-disable-next-line max-len
-export default function replaceJsonKeys(objOrArr: JSONCandidate, options: Partial<Omit<ReplaceJsonKeysOptions, 'keyFilter'>>): JSONCandidate {
+export default function replaceJsonKeys(
+  objOrArr: JSONCandidate,
+  options: Partial<Omit<ReplaceJsonKeysOptions, 'keyFilter'>>,
+): JSONCandidate {
   if (!objOrArr) return objOrArr;
 
   if (!isArray(objOrArr) && !isPlainObject(objOrArr)) return objOrArr;

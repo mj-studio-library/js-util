@@ -3,6 +3,7 @@ import withTimeout from './withTimeout';
 jest.useRealTimers();
 
 const RUNNING_TIME_MILLI = 1000;
+
 const createResolvePromise = () =>
   new Promise((resolve) => {
     setTimeout(() => {
@@ -11,6 +12,7 @@ const createResolvePromise = () =>
   });
 
 const RejectError = new Error();
+
 const createRejectPromise = () =>
   new Promise((resolve, reject) => {
     setTimeout(() => {

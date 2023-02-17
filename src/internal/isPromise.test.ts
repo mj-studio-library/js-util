@@ -1,12 +1,9 @@
 import isPromise from './isPromise';
 
 it('promise is determined Promise', () => {
-  expect(
-    isPromise(
-      new Promise<void>((r) => r()),
-    ),
-  ).toBe(true);
+  expect(isPromise(new Promise<void>((r) => r()))).toBe(true);
 });
+
 it('others are determined not Promise', () => {
   expect(isPromise({})).toBe(false);
   expect(isPromise([])).toBe(false);

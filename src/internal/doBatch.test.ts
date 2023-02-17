@@ -2,6 +2,7 @@ import doBatch from './doBatch';
 
 it('simple', () => {
   expect.assertions(3);
+
   doBatch(
     [1, 2, 3],
     (list) => {
@@ -13,6 +14,7 @@ it('simple', () => {
 
 it('complex', () => {
   expect.assertions(3);
+
   doBatch(
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     (list) => {
@@ -24,10 +26,10 @@ it('complex', () => {
 
 it('complex 2', () => {
   expect.assertions(1);
+
   doBatch(
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     (list) => {
-      console.log(list);
       expect(list.length).toBe(10);
     },
     100,
@@ -36,6 +38,7 @@ it('complex 2', () => {
 
 it('complex 3', () => {
   expect.assertions(2);
+
   doBatch(
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     (list) => {

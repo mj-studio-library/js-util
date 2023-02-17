@@ -1,4 +1,4 @@
-import groupByObject from "./groupByObject";
+import groupByObject from './groupByObject';
 
 const d1 = { age: 12, name: 'mj', parent: { age: 59 } };
 const d2 = { age: 12, name: 'q', parent: { age: 64 } };
