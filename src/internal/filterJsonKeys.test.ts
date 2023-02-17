@@ -181,6 +181,73 @@ it('complex object - leaves', () => {
       },
     ],
   });
+
+  expect(
+    filterJsonKeys(
+      {
+        objects: [
+          {
+            id: 277,
+            video_url:
+              'https://player.vimeo.com/external/648436267.m3u8?s=7cec9fa6c596ce4554d0b7ab4525bf76215df74e&oauth2_token_id=1439194779',
+            thumbnail_url: 'https://d1jg73mbjyh6rn.cloudfront.net/clip_videos/277.jpg',
+            duration_seconds: 1197,
+            orientation: 'horizontal',
+            subtitle: '\uc720\ud55c\uc18c\uc218, \ubb34\ud55c\uc18c\uc218, \uc21c\ud658\uc18c\uc218',
+            unit_a_id: 69,
+            unit_b_id: 75,
+            unit_c_id: 227,
+            unit_a_name: '\uc911\ud559\uc218\ud5592-1',
+            unit_b_name: '\uc720\ub9ac\uc218\uc640 \uc21c\ud658\uc18c\uc218',
+            unit_c_name: '\uc21c\ud658\uc18c\uc218',
+            teacher: {
+              name: '\uc8fc\ub4dc',
+              thumbnail_url: 'https://cdn.teamturing.com/mathking/teacher_thumbnails/teacher_2.png',
+              description:
+                '\ub300\uce58\ub3d9 \uc218\ud559 \uac15\uc0ac, \ud575\uc2ec\ub9cc\uc744 \uc804\ub2ec\ud558\ub294 \uafc0\uac15',
+            },
+            anchors: [
+              { duration_seconds: 45, name: '\uc720\ub9ac\uc218' },
+              { duration_seconds: 280, name: '\uc720\ud55c\uc18c\uc218, \ubb34\ud55c\uc18c\uc218' },
+              { duration_seconds: 459, name: '\uc21c\ud658\uc18c\uc218' },
+              {
+                duration_seconds: 935,
+                name: 'Part 1. \uc720\ud55c\uc18c\uc218, \ubb34\ud55c\uc18c\uc218, \uc21c\ud658\uc18c\uc218 \ud544\uc218 \uc608\uc81c \ud480\uc774',
+              },
+            ],
+            tag: '\uac1c\ub150\uae30\ucd08',
+            video: {
+              id: 277,
+              video_url:
+                'https://player.vimeo.com/external/648436267.m3u8?s=7cec9fa6c596ce4554d0b7ab4525bf76215df74e&oauth2_token_id=1439194779',
+              thumbnail_url: 'https://d1jg73mbjyh6rn.cloudfront.net/clip_videos/277.jpg',
+              duration_seconds: 1197,
+              orientation: 'horizontal',
+              title: '\uc720\ud55c\uc18c\uc218, \ubb34\ud55c\uc18c\uc218, \uc21c\ud658\uc18c\uc218',
+              teacher: {
+                name: '\uc8fc\ub4dc',
+                thumbnail_url: 'https://cdn.teamturing.com/mathking/teacher_thumbnails/teacher_2.png',
+                description:
+                  '\ub300\uce58\ub3d9 \uc218\ud559 \uac15\uc0ac, \ud575\uc2ec\ub9cc\uc744 \uc804\ub2ec\ud558\ub294 \uafc0\uac15',
+              },
+              is_available_for_free_user: true,
+              video_type: 'unit_video',
+            },
+          },
+        ],
+      },
+      'id',
+    ),
+  ).toEqual({
+    objects: [
+      {
+        id: 277,
+        video: {
+          id: 277,
+        },
+      },
+    ],
+  });
 });
 
 it('complex object - some middle node', () => {
