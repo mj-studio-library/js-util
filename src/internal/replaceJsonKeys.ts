@@ -23,7 +23,11 @@ export default function replaceJsonKeys(objOrArr: JSONCandidate, replaceMap: Rec
       }
 
       if (replaceMap[key]) {
-        result[key] = replaceMap[key];
+        if (typeof replaceMap[key] === 'function') {
+          result[key] = replaceMap[key](value);
+        } else {
+          result[key] = replaceMap[key];
+        }
       } else {
         result[key] = value;
       }

@@ -10,6 +10,7 @@ it('Falsy values return itself', () => {
 
 it('simple', () => {
   expect(replaceJsonKeys({ a: 1 }, { a: 'b' })).toEqual({ a: 'b' });
+  expect(replaceJsonKeys({ a: 1 }, { a: (value) => value * 2})).toEqual({ a: 2 });
 });
 
 it('complex', () => {
