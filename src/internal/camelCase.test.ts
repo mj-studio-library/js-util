@@ -7,5 +7,6 @@ describe('convert strings to camelCase!', () => {
     expect(camelCase('_s_n_a_k_e_       ')).toBe('sNAKE');
     expect(camelCase('_____________________   ')).toBe('');
     expect(camelCase('_________^^________mym0404 ')).toBe('^^Mym0404');
+    expect(camelCase('get_challenge_by_int:challenge_id')).toBe('getChallengeByIntChallengeId');
   });
 });
