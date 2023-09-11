@@ -9,5 +9,6 @@ describe('convert strings to camelCase!', () => {
     expect(camelCase('_________^^________mym0404 ')).toBe('^^Mym0404');
     expect(camelCase('get_challenge_by_int:challenge_id')).toBe('getChallengeByIntChallengeId');
     expect(camelCase('get_challenge_by_int-challenge_id')).toBe('getChallengeByIntChallengeId');
+    expect(camelCase('get_1_point_my_point')).toBe('get1PointMyPoint');
   });
 });

@@ -1,6 +1,6 @@
 {
   "name": "@mj-studio/js-util",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Custom JavaScript Utilities for MJ Studio",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

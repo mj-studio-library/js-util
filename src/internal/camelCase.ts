@@ -9,7 +9,7 @@ function convertCamelCaseFromSnakeCase(str: string): string {
     .trim() // 1. remove side white spaces
     .replace(/[:-]/g, '_')
     .replace(/(^_+|_+$)/g, '') // 2. remove side underscores
-    .replace(/_+[a-z]/g, (word) => {
+    .replace(/_+[a-z0-9]/g, (word) => {
       // 3. convert snake to camel
       return word.charAt(word.length - 1).toUpperCase();
     });
