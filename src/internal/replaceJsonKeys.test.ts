@@ -31,6 +31,25 @@ it('complex', () => {
   });
 });
 
+it('postLeafTransform', () => {
+  expect(
+    replaceJsonKeys(
+      {
+        current_user_high_ratio_100: 99.7,
+        after_user_high_ratio_100: 99.1,
+        need_problem_number: 2,
+        is_problem_exist: true,
+      },
+      { replaceMap: { current_user_high_ratio_100: 'userHighRatio' }, postLeafTransform: (t) => `$${t}$` },
+    ),
+  ).toEqual({
+    current_user_high_ratio_100: '$userHighRatio$',
+    after_user_high_ratio_100: '$99.1$',
+    need_problem_number: '$2$',
+    is_problem_exist: '$true$',
+  });
+});
+
 it('strip undefined', () => {
   expect(replaceJsonKeys({ a: 1, b: undefined }, {})).toEqual({ a: 1 });
   expect(replaceJsonKeys({ a: 1, b: undefined }, { replaceMap: { a: () => undefined } })).toEqual({});

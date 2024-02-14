@@ -8,6 +8,7 @@ function isArray(objOrArray: JSONCandidate): objOrArray is any[] {
 export type ReplaceJsonKeysOptions = {
   stripUndefined?: boolean;
   replaceMap?: Record<string, any>;
+  postLeafTransform?: (value: any) => string;
 };
 
 export default function replaceJsonKeys(
@@ -40,7 +41,14 @@ export default function replaceJsonKeys(
         result[key] = value;
       }
 
-      if (options.stripUndefined && typeof result[key] === 'undefined') delete result[key];
+      let stripped = false;
+      if (options.stripUndefined && typeof result[key] === 'undefined') {
+        delete result[key];
+        stripped = true;
+      }
+      if (!isArray(result[key]) && !isPlainObject(result[key]) && !stripped && options.postLeafTransform) {
+        result[key] = options.postLeafTransform(result[key]);
+      }
     });
 
     return result;
