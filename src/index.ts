@@ -7,6 +7,7 @@ import doBatch from './internal/doBatch';
 import filterJsonKeys from './internal/filterJsonKeys';
 import groupByArray from './internal/groupByArray';
 import groupByObject from './internal/groupByObject';
+import is from './internal/is';
 import isPlainObject from './internal/isPlainObject';
 import isPromise from './internal/isPromise';
 import reverseObjectKeyValues from './internal/reverseObjectKeyValues';
@@ -29,4 +30,5 @@ export {
   doBatch,
   replaceJsonKeys,
   filterJsonKeys,
+  is,
 };
