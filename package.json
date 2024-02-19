@@ -1,6 +1,6 @@
 {
   "name": "@mj-studio/js-util",
-  "version": "1.0.17",
+  "version": "1.0.19",
   "description": "Custom JavaScript Utilities for MJ Studio",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -10,7 +10,8 @@
     "c": "yarn lint && yarn tsc && yarn jest --coverage -u",
     "lint": "eslint src --ext .ts,.tsx,.js,.jsx",
     "test": "jest",
-    "p": "yarn publish --access=public"
+    "release": "yarn lint && yarn tsc && zx tool/publish.mjs",
+    "build": "yarn tsc"
   },
   "private": false,
   "repository": {

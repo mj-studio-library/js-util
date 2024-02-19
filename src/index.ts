@@ -19,10 +19,13 @@ import withTimeout from './internal/promise/withTimeout';
 import { randomItem } from './internal/randomItem';
 import replaceJsonKeys, { ReplaceJsonKeysOptions } from './internal/replaceJsonKeys';
 import reverseObjectKeyValues from './internal/reverseObjectKeyValues';
+import { setIntervalWithTimeout, TimeoutHandler } from './internal/setIntervalWithTimeout';
 import { toggled } from './internal/toggled';
 import { unique } from './internal/unique';
 
 export {
+  setIntervalWithTimeout,
+  TimeoutHandler,
   formatJson,
   lastMatchIndex,
   capitalize,
