@@ -1,7 +1,9 @@
 export default function reverseObjectKeyValues<T extends Record<string, string | number>>(
   obj: T,
 ): T | Record<string, string> {
-  if (!obj || Array.isArray(obj) || typeof obj !== 'object') return obj;
+  if (!obj || Array.isArray(obj) || typeof obj !== 'object') {
+    return obj;
+  }
 
   const result: Record<string, string> = {};
 

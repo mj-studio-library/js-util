@@ -2,10 +2,16 @@ import filterJsonKeys from './filterJsonKeys';
 
 it('simple object', () => {
   expect(filterJsonKeys({ a: 1, b: 1 }, 'a')).toEqual({ a: 1 });
-  expect(filterJsonKeys({ a: 1, b: 1, ab: 1 }, (key) => key.startsWith('a'))).toEqual({ a: 1, ab: 1 });
+  expect(filterJsonKeys({ a: 1, b: 1, ab: 1 }, (key) => key.startsWith('a'))).toEqual({
+    a: 1,
+    ab: 1,
+  });
 
   expect(
-    filterJsonKeys({ android: '2.15.23', ios: '2.15.23', title: '', body: '', able_to_use: true }, 'body'),
+    filterJsonKeys(
+      { android: '2.15.23', ios: '2.15.23', title: '', body: '', able_to_use: true },
+      'body',
+    ),
   ).toEqual({
     body: '',
   });
@@ -13,7 +19,9 @@ it('simple object', () => {
 
 it('simple array', () => {
   expect(filterJsonKeys([1, 2], 'a')).toEqual([]);
-  expect(filterJsonKeys([{ c1: { c2: { c3: [1, 2, 3] } } }, 2], 'c1')).toEqual([{ c1: { c2: { c3: [1, 2, 3] } } }]);
+  expect(filterJsonKeys([{ c1: { c2: { c3: [1, 2, 3] } } }, 2], 'c1')).toEqual([
+    { c1: { c2: { c3: [1, 2, 3] } } },
+  ]);
 });
 
 it('complex object - leaves', () => {
@@ -193,7 +201,8 @@ it('complex object - leaves', () => {
             thumbnail_url: 'https://d1jg73mbjyh6rn.cloudfront.net/clip_videos/277.jpg',
             duration_seconds: 1197,
             orientation: 'horizontal',
-            subtitle: '\uc720\ud55c\uc18c\uc218, \ubb34\ud55c\uc18c\uc218, \uc21c\ud658\uc18c\uc218',
+            subtitle:
+              '\uc720\ud55c\uc18c\uc218, \ubb34\ud55c\uc18c\uc218, \uc21c\ud658\uc18c\uc218',
             unit_a_id: 69,
             unit_b_id: 75,
             unit_c_id: 227,
@@ -226,7 +235,8 @@ it('complex object - leaves', () => {
               title: '\uc720\ud55c\uc18c\uc218, \ubb34\ud55c\uc18c\uc218, \uc21c\ud658\uc18c\uc218',
               teacher: {
                 name: '\uc8fc\ub4dc',
-                thumbnail_url: 'https://cdn.teamturing.com/mathking/teacher_thumbnails/teacher_2.png',
+                thumbnail_url:
+                  'https://cdn.teamturing.com/mathking/teacher_thumbnails/teacher_2.png',
                 description:
                   '\ub300\uce58\ub3d9 \uc218\ud559 \uac15\uc0ac, \ud575\uc2ec\ub9cc\uc744 \uc804\ub2ec\ud558\ub294 \uafc0\uac15',
               },
@@ -384,7 +394,9 @@ it('complex object - some middle node', () => {
 
 it('complex array', () => {
   expect(filterJsonKeys([1, 2], 'a')).toEqual([]);
-  expect(filterJsonKeys([{ c1: { c2: { c3: [1, 2, 3] } } }, 2], 'c1')).toEqual([{ c1: { c2: { c3: [1, 2, 3] } } }]);
+  expect(filterJsonKeys([{ c1: { c2: { c3: [1, 2, 3] } } }, 2], 'c1')).toEqual([
+    { c1: { c2: { c3: [1, 2, 3] } } },
+  ]);
 });
 
 it("root shouldn't be filtered", () => {

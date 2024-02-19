@@ -80,7 +80,9 @@ it('complex', () => {
               explain: {
                 render: {
                   images: [], // Array[string], Non-Nullable
-                  texts: ['$(-2+4 i)-3 i=-2+(4-3) i=-2+i$\n$a=-2,\\ b=1\\qquad\\therefore\\ a+b=-1$'], // Array[string], Non-Nullable
+                  texts: [
+                    '$(-2+4 i)-3 i=-2+(4-3) i=-2+i$\n$a=-2,\\ b=1\\qquad\\therefore\\ a+b=-1$',
+                  ], // Array[string], Non-Nullable
                   order: 'T', // string, Non-Nullable
                 },
               },
@@ -88,7 +90,12 @@ it('complex', () => {
           },
         ],
       },
-      { demotest_srl: 'demotestSrl', demotest_problems: 'problems', answer: 'myAnswer', unit_d_name: 'name' },
+      {
+        demotest_srl: 'demotestSrl',
+        demotest_problems: 'problems',
+        answer: 'myAnswer',
+        unit_d_name: 'name',
+      },
     ),
   ).toEqual({
     demotestSrl: 2, // interger, Non-Nullable

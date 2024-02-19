@@ -1,4 +1,4 @@
-import { JSONCandidate } from './camelCaseObject';
+import type { JSONCandidate } from './camelCaseObject';
 import isPlainObject from './isPlainObject';
 
 function isArray(objOrArray: JSONCandidate): objOrArray is any[] {
@@ -15,9 +15,13 @@ export default function replaceJsonKeys(
   objOrArr: JSONCandidate,
   options: Partial<Omit<ReplaceJsonKeysOptions, 'keyFilter'>>,
 ): JSONCandidate {
-  if (!objOrArr) return objOrArr;
+  if (!objOrArr) {
+    return objOrArr;
+  }
 
-  if (!isArray(objOrArr) && !isPlainObject(objOrArr)) return objOrArr;
+  if (!isArray(objOrArr) && !isPlainObject(objOrArr)) {
+    return objOrArr;
+  }
 
   if (isArray(objOrArr)) {
     return objOrArr.map((v) => replaceJsonKeys(v, options));
@@ -46,7 +50,13 @@ export default function replaceJsonKeys(
         delete result[key];
         stripped = true;
       }
-      if (!isArray(result[key]) && !isPlainObject(result[key]) && !stripped && options.postLeafTransform) {
+
+      if (
+        !isArray(result[key]) &&
+        !isPlainObject(result[key]) &&
+        !stripped &&
+        options.postLeafTransform
+      ) {
         result[key] = options.postLeafTransform(result[key]);
       }
     });

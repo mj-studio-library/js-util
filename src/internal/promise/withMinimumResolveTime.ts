@@ -1,4 +1,7 @@
-export default function withMinimumResolveTime<T>(minimumMilli: number, promise: Promise<T>): Promise<T> {
+export default function withMinimumResolveTime<T>(
+  minimumMilli: number,
+  promise: Promise<T>,
+): Promise<T> {
   return new Promise((resolve, reject) => {
     const start = Date.now();
 

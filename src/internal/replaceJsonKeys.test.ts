@@ -40,7 +40,10 @@ it('postLeafTransform', () => {
         need_problem_number: 2,
         is_problem_exist: true,
       },
-      { replaceMap: { current_user_high_ratio_100: 'userHighRatio' }, postLeafTransform: (t) => `$${t}$` },
+      {
+        replaceMap: { current_user_high_ratio_100: 'userHighRatio' },
+        postLeafTransform: (t) => `$${t}$`,
+      },
     ),
   ).toEqual({
     current_user_high_ratio_100: '$userHighRatio$',
@@ -52,9 +55,14 @@ it('postLeafTransform', () => {
 
 it('strip undefined', () => {
   expect(replaceJsonKeys({ a: 1, b: undefined }, {})).toEqual({ a: 1 });
-  expect(replaceJsonKeys({ a: 1, b: undefined }, { replaceMap: { a: () => undefined } })).toEqual({});
+  expect(replaceJsonKeys({ a: 1, b: undefined }, { replaceMap: { a: () => undefined } })).toEqual(
+    {},
+  );
 
   expect(
-    replaceJsonKeys({ a: 1, b: undefined }, { stripUndefined: false, replaceMap: { a: () => undefined } }),
+    replaceJsonKeys(
+      { a: 1, b: undefined },
+      { stripUndefined: false, replaceMap: { a: () => undefined } },
+    ),
   ).toEqual({ a: undefined, b: undefined });
 });

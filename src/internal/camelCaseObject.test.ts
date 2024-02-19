@@ -1,4 +1,5 @@
 import { camelCaseObject } from '../index';
+
 import toCamelCase from './camelCaseObject';
 
 describe('camelCase function test', (): void => {
@@ -61,7 +62,10 @@ describe('camelCase function test', (): void => {
 
   it('change object containing non-plain-object to camelCase', (): void => {
     class Class {
-      constructor(public name: string, private birth: number) {}
+      constructor(
+        public name: string,
+        private birth: number,
+      ) {}
 
       sayMyName() {}
     }

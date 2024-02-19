@@ -12,9 +12,13 @@ function camelCaseObject(objOrArr: JSONCandidate): JSONCandidate {
     return objOrArr;
   }
 
-  if (!objOrArr) return objOrArr;
+  if (!objOrArr) {
+    return objOrArr;
+  }
 
-  if (!isArray(objOrArr) && !isPlainObject(objOrArr)) return objOrArr;
+  if (!isArray(objOrArr) && !isPlainObject(objOrArr)) {
+    return objOrArr;
+  }
 
   if (isArray(objOrArr)) {
     return objOrArr.map(camelCaseObject);

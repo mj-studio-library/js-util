@@ -1,4 +1,4 @@
-import { JSONCandidate } from './camelCaseObject';
+import type { JSONCandidate } from './camelCaseObject';
 import isPrimitive from './isPrimitive';
 
 type Filter = ((key: string) => boolean) | string[] | string;
@@ -19,7 +19,9 @@ function _filterJsonKeys(
   shouldBeIncluded: boolean,
   isRoot: boolean,
 ): [boolean, JSONCandidate] {
-  if (isPrimitive(x)) return [false, x];
+  if (isPrimitive(x)) {
+    return [false, x];
+  }
 
   if (Array.isArray(x)) {
     let ret = x.map((c) => _filterJsonKeys(c, filter, shouldBeIncluded, false));
@@ -34,7 +36,9 @@ function _filterJsonKeys(
 
     ret = ret.filter((v) => v[0]);
 
-    if (ret.length === 0) return [false, undefined];
+    if (ret.length === 0) {
+      return [false, undefined];
+    }
 
     return [true, ret.map((v) => v[1])];
   } else {
