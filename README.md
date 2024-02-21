@@ -24,6 +24,7 @@ npm install @mj-studio/js-util
 * `groupByArray` : group object as arrays with key a provider callback
 * `groupByObject` : group object as objects with key a provider callback
 * `doBatch` : with list, do something with batched manner and return results of callback as a list
+* And.. other things!
 
 #### Promise helper
 * `withTimeout` : set max running time of promise, if exceeds it will reject.
