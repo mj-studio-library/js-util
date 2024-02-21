@@ -22,6 +22,18 @@ const isType = {
   plainObject: (candidate: any): candidate is Record<string, unknown> => isPlainObject(candidate),
   array: <T>(candidate: any): candidate is Array<T> => Array.isArray(candidate),
   boolean: (candidate: any): candidate is boolean => typeof candidate === 'boolean',
+  promise: <T>(p: Promise<T> | any): p is Promise<T> => {
+    if (
+      p !== null &&
+      typeof p === 'object' &&
+      typeof p.then === 'function' &&
+      typeof p.catch === 'function'
+    ) {
+      return true;
+    }
+
+    return false;
+  },
 };
 
 const isCheck = {
