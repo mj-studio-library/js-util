@@ -14,6 +14,7 @@ import isPlainObject from './internal/isPlainObject';
 import isPromise from './internal/isPromise';
 import { lastMatchIndex } from './internal/lastMatchIndex';
 import { lastOf } from './internal/lastOf';
+import { numberWithCommas } from './internal/numberWithComma';
 import withMinimumResolveTime from './internal/promise/withMinimumResolveTime';
 import withTimeout from './internal/promise/withTimeout';
 import { randomItem } from './internal/randomItem';
@@ -24,6 +25,7 @@ import { toggled } from './internal/toggled';
 import { unique } from './internal/unique';
 
 export {
+  numberWithCommas,
   setIntervalWithTimeout,
   TimeoutHandler,
   formatJson,
