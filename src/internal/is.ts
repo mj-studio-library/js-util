@@ -7,7 +7,7 @@ const isType = {
   number: (candidate: any): candidate is number =>
     typeof candidate === 'number' && !isNaN(candidate),
   string: (candidate: any): candidate is string => typeof candidate === 'string',
-  integerString: (candidate: any): boolean =>
+  integerString: (candidate: any): candidate is string =>
     is.notEmptyString(candidate) && is.number(Number(candidate)) && /^-?\d+$/.test(candidate),
   null: (candidate: any): candidate is null => candidate === null,
   undefined: (candidate: any): candidate is undefined => candidate === undefined,
@@ -39,8 +39,7 @@ const isType = {
 const isCheck = {
   notEmptyString: (candidate: any): candidate is string =>
     isType.string(candidate) && candidate.length > 0,
-  emptyString: (candidate: any): candidate is string =>
-    isType.string(candidate) && candidate.length === 0,
+  emptyString: (candidate: any): boolean => isType.string(candidate) && candidate.length === 0,
   emptyArray: (candidate: any): boolean => isType.array(candidate) && candidate.length === 0,
   notEmptyArray: <T>(candidate: any): candidate is Array<T> =>
     isType.array(candidate) && candidate.length > 0,
