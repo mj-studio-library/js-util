@@ -1,6 +1,6 @@
 import is from './is';
 
-export function numberWithCommas(x?: number): string {
+export function numberWithComma(x?: number): string {
   if (!is.number(x)) {
     return '';
   }

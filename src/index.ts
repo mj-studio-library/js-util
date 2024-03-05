@@ -14,18 +14,22 @@ import isPlainObject from './internal/isPlainObject';
 import isPromise from './internal/isPromise';
 import { lastMatchIndex } from './internal/lastMatchIndex';
 import { lastOf } from './internal/lastOf';
-import { numberWithCommas } from './internal/numberWithComma';
+import { numberWithComma } from './internal/numberWithComma';
+import { padZero } from './internal/padZero';
 import withMinimumResolveTime from './internal/promise/withMinimumResolveTime';
 import withTimeout from './internal/promise/withTimeout';
 import { randomItem } from './internal/randomItem';
 import replaceJsonKeys, { ReplaceJsonKeysOptions } from './internal/replaceJsonKeys';
 import reverseObjectKeyValues from './internal/reverseObjectKeyValues';
 import { setIntervalWithTimeout, TimeoutHandler } from './internal/setIntervalWithTimeout';
+import { toFixed } from './internal/toFixed';
+import { toFixedIfNeed } from './internal/toFixedIfNeed';
 import { toggled } from './internal/toggled';
+import { toSiUnitString } from './internal/toSiUnitString';
 import { unique } from './internal/unique';
 
 export {
-  numberWithCommas,
+  numberWithComma,
   setIntervalWithTimeout,
   TimeoutHandler,
   formatJson,
@@ -53,4 +57,8 @@ export {
   filterNullish,
   generateArray,
   toggled,
+  padZero,
+  toFixed,
+  toFixedIfNeed,
+  toSiUnitString,
 };
