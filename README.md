@@ -1,5 +1,7 @@
 ## JavaScript utilities for MJ Studio
 
+![ogimage-1260-630](https://github.com/mj-studio-library/js-util/assets/33388801/9d345b3c-0353-4cec-b055-d5c018ec68a2)
+
 ![JS Check](https://github.com/mym0404/mj-studio-js-util/workflows/JS%20Check/badge.svg)
 
 ---
