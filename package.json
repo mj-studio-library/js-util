@@ -1,10 +1,10 @@
 {
   "name": "@mj-studio/js-util",
-  "version": "1.0.26",
+  "version": "1.0.27",
   "description": "Custom JavaScript Utilities for MJ Studio",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "homepage": "https://github.com/mym0404/mj-studio-js-util",
+  "homepage": "https://github.com/mj-studio-library/js-util",
   "scripts": {
     "prepare": "yarn c",
     "c": "yarn lint --cache && yarn tsc && yarn jest --coverage -u",
