@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "lib": ["ES6", "dom"],
+    "lib": ["ES6", "ESNext"],
     "noResolve": false,
     "noImplicitAny": false,
     "removeComments": false,
     "sourceMap": true,
-    "module": "CommonJS",
+    "module": "ESNext",
     "moduleResolution": "Node",
     "target": "ESNext",
     "noEmit": false,
