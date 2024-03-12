@@ -10,8 +10,23 @@ describe('type', () => {
     expect(is.integerString('0')).toBe(true);
     expect(is.integerString('-0')).toBe(true);
     expect(is.integerString('1')).toBe(true);
+    expect(is.integerString('1.1')).toBe(false);
     expect(is.integerString('1111111111111111')).toBe(true);
     expect(is.integerString('-1111111111111111')).toBe(true);
+  });
+
+  it('numberString', () => {
+    expect(is.numberString('')).toBe(false);
+    expect(is.numberString('-')).toBe(false);
+    expect(is.numberString('  ')).toBe(false);
+    expect(is.numberString('a')).toBe(false);
+    expect(is.numberString('1,000')).toBe(false);
+    expect(is.numberString('0')).toBe(true);
+    expect(is.numberString('-0')).toBe(true);
+    expect(is.numberString('1')).toBe(true);
+    expect(is.numberString('1.1')).toBe(true);
+    expect(is.numberString('1111111111111111')).toBe(true);
+    expect(is.numberString('-1111111111111111')).toBe(true);
   });
 
   it('function', () => {

@@ -9,6 +9,10 @@ const isType = {
   string: (candidate: any): candidate is string => typeof candidate === 'string',
   integerString: (candidate: any): candidate is string =>
     is.notEmptyString(candidate) && is.number(Number(candidate)) && /^-?\d+$/.test(candidate),
+  numberString: (candidate: any): candidate is string =>
+    is.notEmptyString(candidate) &&
+    is.number(Number(candidate)) &&
+    /^-?\d+(\.\d+)?$/.test(candidate),
   null: (candidate: any): candidate is null => candidate === null,
   undefined: (candidate: any): candidate is undefined => candidate === undefined,
   nullOrUndefined: (candidate: any): candidate is undefined | null =>

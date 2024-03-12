@@ -8,6 +8,7 @@ declare const is: {
     number: (candidate: any) => candidate is number;
     string: (candidate: any) => candidate is string;
     integerString: (candidate: any) => candidate is string;
+    numberString: (candidate: any) => candidate is string;
     null: (candidate: any) => candidate is null;
     undefined: (candidate: any) => candidate is undefined;
     nullOrUndefined: (candidate: any) => candidate is null;
