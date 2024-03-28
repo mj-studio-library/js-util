@@ -11,7 +11,7 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "target": "ES2015",
-    "noEmit": true,
+    "noEmit": false,
     "declaration": true,
     "esModuleInterop": true,
     "outDir": "dist",
