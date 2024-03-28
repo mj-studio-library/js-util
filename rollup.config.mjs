@@ -1,6 +1,7 @@
 import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
 import ts from 'rollup-plugin-typescript2';
+import nodeResolve from '@rollup/plugin-node-resolve';
 
 export default [
   {
@@ -17,9 +18,8 @@ export default [
         preserveModules: false,
       },
     ],
-    external: ['react', 'react-native'],
     plugins: [
-      // nodeResolve({ extensions: ['.ts', '.tsx', '.js', '.jsx'] }),
+      nodeResolve({ extensions: ['.ts', '.tsx', '.js', '.jsx'] }),
       commonjs(),
       ts({ tsconfig: './tsconfig.json' }),
       terser(),
