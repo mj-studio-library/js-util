@@ -10,7 +10,7 @@
     "sourceMap": true,
     "module": "ESNext",
     "moduleResolution": "Node",
-    "target": "ESNext",
+    "target": "ES2015",
     "noEmit": true,
     "declaration": true,
     "esModuleInterop": true,
