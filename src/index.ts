@@ -4,6 +4,7 @@ import { capitalize } from './internal/capitalize';
 import convertJsonKeys from './internal/convertJsonKeys';
 import doBatch from './internal/doBatch';
 import filterJsonKeys from './internal/filterJsonKeys';
+import { filterNonNullishKeys } from './internal/filterNonNullishKeys';
 import { filterNullish } from './internal/filterNullish';
 import { formatJson } from './internal/formatJson';
 import { generateArray } from './internal/generateArray';
@@ -61,4 +62,5 @@ export {
   toFixed,
   toFixedIfNeed,
   toSiUnitString,
+  filterNonNullishKeys,
 };
