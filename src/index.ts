@@ -26,6 +26,8 @@ import replaceJsonValuesRecursively, {
 } from './internal/replaceJsonValuesRecursively';
 import reverseObjectKeyValues from './internal/reverseObjectKeyValues';
 import { setIntervalWithTimeout, TimeoutHandler } from './internal/setIntervalWithTimeout';
+import { snakeCase } from './internal/snakeCase';
+import snakeCaseObject from './internal/snakeCaseObject';
 import { toFixed } from './internal/toFixed';
 import { toFixedIfNeed } from './internal/toFixedIfNeed';
 import { toggled } from './internal/toggled';
@@ -67,4 +69,6 @@ export {
   toFixedIfNeed,
   toSiUnitString,
   filterNonNullishKeys,
+  snakeCase,
+  snakeCaseObject,
 };
