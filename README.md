@@ -20,7 +20,8 @@ npm install @mj-studio/js-util
 * `camelCase` : convert snake_case string to camelCase
 * `camelCaseObject` : convert keys of object to camelCased 
 * `convertJsonKeys` : convert keys of json object to something others
-* `replaceJsonKeys` : replace keys of json object to something others
+* `replaceJsonKeysRecursively` : replace json value matchs with key selector
+* `replaceJsonValuesRecursively` : replace json key matches with key selector
 * `filterJsonKeys` : filter keys of json object to something others
 * `reverseObjectKeyValues` : reverse key and value in object
 * `groupByArray` : group object as arrays with key a provider callback

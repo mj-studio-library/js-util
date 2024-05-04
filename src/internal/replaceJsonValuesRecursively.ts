@@ -14,7 +14,7 @@ export type ReplaceJsonKeysOptions = {
 /**
  * replace all json value matches with key selector
  */
-export default function replaceJsonValuesByKey<T extends JSONCandidate>(
+export default function replaceJsonValuesRecursively<T extends JSONCandidate>(
   objOrArr: T,
   options: Partial<Omit<ReplaceJsonKeysOptions, 'keyFilter'>>,
 ): T {
@@ -27,7 +27,7 @@ export default function replaceJsonValuesByKey<T extends JSONCandidate>(
   }
 
   if (isArray(objOrArr)) {
-    return objOrArr.map((v) => replaceJsonValuesByKey(v, options)) as any;
+    return objOrArr.map((v) => replaceJsonValuesRecursively(v, options)) as any;
   } else {
     const result: object = {};
 
@@ -40,9 +40,9 @@ export default function replaceJsonValuesByKey<T extends JSONCandidate>(
         }
       } else {
         if (isPlainObject(value)) {
-          value = replaceJsonValuesByKey(value, options);
+          value = replaceJsonValuesRecursively(value, options);
         } else if (isArray(value)) {
-          value = value.map((v) => replaceJsonValuesByKey(v, options));
+          value = value.map((v) => replaceJsonValuesRecursively(v, options));
         }
 
         result[key] = value;

@@ -20,7 +20,10 @@ import { padZero } from './internal/padZero';
 import withMinimumResolveTime from './internal/promise/withMinimumResolveTime';
 import withTimeout from './internal/promise/withTimeout';
 import { randomItem } from './internal/randomItem';
-import replaceJsonValuesByKey, { ReplaceJsonKeysOptions } from './internal/replaceJsonValuesByKey';
+import replaceJsonKeysRecursively from './internal/replaceJsonKeysRecursively';
+import replaceJsonValuesRecursively, {
+  ReplaceJsonKeysOptions,
+} from './internal/replaceJsonValuesRecursively';
 import reverseObjectKeyValues from './internal/reverseObjectKeyValues';
 import { setIntervalWithTimeout, TimeoutHandler } from './internal/setIntervalWithTimeout';
 import { toFixed } from './internal/toFixed';
@@ -51,7 +54,8 @@ export {
   groupByArray,
   groupByObject,
   doBatch,
-  replaceJsonValuesByKey,
+  replaceJsonValuesRecursively,
+  replaceJsonKeysRecursively,
   filterJsonKeys,
   is,
   randomItem,

@@ -1,24 +1,27 @@
-import replaceJsonValuesByKey from './replaceJsonValuesByKey';
+import replaceJsonValuesRecursively from './replaceJsonValuesRecursively';
 
 it('Falsy values return itself', () => {
-  expect(replaceJsonValuesByKey(undefined, {})).toBeUndefined();
-  expect(replaceJsonValuesByKey(null, {})).toBeNull();
+  expect(replaceJsonValuesRecursively(undefined, {})).toBeUndefined();
+  expect(replaceJsonValuesRecursively(null, {})).toBeNull();
   // @ts-ignore
-  expect(replaceJsonValuesByKey('', {})).toStrictEqual('');
+  expect(replaceJsonValuesRecursively('', {})).toStrictEqual('');
 });
 
 it('simple', () => {
-  expect(replaceJsonValuesByKey({ a: 1 }, { replacer: { a: 'b' } })).toStrictEqual({ a: 'b' });
-  expect(replaceJsonValuesByKey({ a: 1 }, { replacer: { a: (value) => value * 2 } })).toStrictEqual(
-    {
-      a: 2,
-    },
-  );
+  expect(replaceJsonValuesRecursively({ a: 1 }, { replacer: { a: 'b' } })).toStrictEqual({
+    a: 'b',
+  });
+
+  expect(
+    replaceJsonValuesRecursively({ a: 1 }, { replacer: { a: (value) => value * 2 } }),
+  ).toStrictEqual({
+    a: 2,
+  });
 });
 
 it('complex', () => {
   expect(
-    replaceJsonValuesByKey(
+    replaceJsonValuesRecursively(
       {
         current_user_high_ratio_100: 99.7,
         after_user_high_ratio_100: 99.1,
@@ -37,7 +40,7 @@ it('complex', () => {
 
 it('nested', () => {
   expect(
-    replaceJsonValuesByKey(
+    replaceJsonValuesRecursively(
       {
         a: 0,
         b: 0,
@@ -60,7 +63,7 @@ it('nested', () => {
   });
 
   expect(
-    replaceJsonValuesByKey(
+    replaceJsonValuesRecursively(
       {
         a: 0,
         b: 0,
@@ -85,7 +88,7 @@ it('nested', () => {
 
 it('postLeafTransform', () => {
   expect(
-    replaceJsonValuesByKey(
+    replaceJsonValuesRecursively(
       {
         current_user_high_ratio_100: 99.7,
         after_user_high_ratio_100: 99.1,
@@ -106,16 +109,18 @@ it('postLeafTransform', () => {
 });
 
 it('strip undefined', () => {
-  expect(replaceJsonValuesByKey({ a: 1, b: undefined }, { stripUndefined: true })).toStrictEqual({
+  expect(
+    replaceJsonValuesRecursively({ a: 1, b: undefined }, { stripUndefined: true }),
+  ).toStrictEqual({
     a: 1,
   });
 
   expect(
-    replaceJsonValuesByKey({ a: 1, b: undefined }, { replacer: { a: () => undefined } }),
+    replaceJsonValuesRecursively({ a: 1, b: undefined }, { replacer: { a: () => undefined } }),
   ).toStrictEqual({ a: undefined, b: undefined });
 
   expect(
-    replaceJsonValuesByKey(
+    replaceJsonValuesRecursively(
       { a: 1, b: undefined },
       { stripUndefined: false, replacer: { a: () => undefined } },
     ),

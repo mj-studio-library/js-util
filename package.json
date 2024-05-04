@@ -5,7 +5,7 @@
   "homepage": "https://github.com/mj-studio-library/js-util",
   "scripts": {
     "prepare": "yarn c",
-    "c": "yarn lint --cache && yarn tsc && yarn jest --coverage -u",
+    "t": "yarn lint --cache && yarn tsc && yarn jest --coverage -u",
     "lint": "eslint src --ext .ts,.tsx,.js,.jsx",
     "test": "jest",
     "release": "yarn lint && yarn tsc && zx tool/publish.mjs",
