@@ -2,7 +2,7 @@ import { removeValueByKeyInObject } from './removeValueByKeyInObject';
 
 it('simple case', () => {
   const ret = removeValueByKeyInObject({ a: 1, b: 'string', c: {} }, 'c');
-  expect(ret).toEqual({
+  expect(ret).toStrictEqual({
     b: 'string',
     a: 1,
   });
@@ -10,7 +10,7 @@ it('simple case', () => {
 
 it('complex case', () => {
   const ret = removeValueByKeyInObject({ a: 1, b: 'string', c: {} }, ['a', 'b']);
-  expect(ret).toEqual({
+  expect(ret).toStrictEqual({
     c: {},
   });
 });

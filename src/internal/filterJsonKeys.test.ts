@@ -1,8 +1,8 @@
 import filterJsonKeys from './filterJsonKeys';
 
 it('simple object', () => {
-  expect(filterJsonKeys({ a: 1, b: 1 }, 'a')).toEqual({ a: 1 });
-  expect(filterJsonKeys({ a: 1, b: 1, ab: 1 }, (key) => key.startsWith('a'))).toEqual({
+  expect(filterJsonKeys({ a: 1, b: 1 }, 'a')).toStrictEqual({ a: 1 });
+  expect(filterJsonKeys({ a: 1, b: 1, ab: 1 }, (key) => key.startsWith('a'))).toStrictEqual({
     a: 1,
     ab: 1,
   });
@@ -12,14 +12,14 @@ it('simple object', () => {
       { android: '2.15.23', ios: '2.15.23', title: '', body: '', able_to_use: true },
       'body',
     ),
-  ).toEqual({
+  ).toStrictEqual({
     body: '',
   });
 });
 
 it('simple array', () => {
-  expect(filterJsonKeys([1, 2], 'a')).toEqual([]);
-  expect(filterJsonKeys([{ c1: { c2: { c3: [1, 2, 3] } } }, 2], 'c1')).toEqual([
+  expect(filterJsonKeys([1, 2], 'a')).toStrictEqual([]);
+  expect(filterJsonKeys([{ c1: { c2: { c3: [1, 2, 3] } } }, 2], 'c1')).toStrictEqual([
     { c1: { c2: { c3: [1, 2, 3] } } },
   ]);
 });
@@ -46,7 +46,7 @@ it('complex object - leaves', () => {
       },
       'is_show_college',
     ),
-  ).toEqual({
+  ).toStrictEqual({
     user: {
       studentprofile: {
         is_show_college: true,
@@ -80,7 +80,7 @@ it('complex object - leaves', () => {
       },
       (key) => /progress/.test(key),
     ),
-  ).toEqual({
+  ).toStrictEqual({
     objects: [
       { total_progress_count: 7, progress_count: 0 },
       { total_progress_count: 3, progress_count: 0 },
@@ -106,7 +106,7 @@ it('complex object - leaves', () => {
       ],
       'a',
     ),
-  ).toEqual([
+  ).toStrictEqual([
     {
       submit_feedback: [{ a: 1 }],
     },
@@ -177,7 +177,7 @@ it('complex object - leaves', () => {
       },
       'id',
     ),
-  ).toEqual({
+  ).toStrictEqual({
     objects: [
       {
         id: 68,
@@ -248,7 +248,7 @@ it('complex object - leaves', () => {
       },
       'id',
     ),
-  ).toEqual({
+  ).toStrictEqual({
     objects: [
       {
         id: 277,
@@ -280,7 +280,7 @@ it('complex object - some middle node', () => {
       ],
       'hello',
     ),
-  ).toEqual([{ hello: [{ b: { c: [{ a: 1 }] } }, {}, [1, 2, 3]] }]);
+  ).toStrictEqual([{ hello: [{ b: { c: [{ a: 1 }] } }, {}, [1, 2, 3]] }]);
 
   expect(
     filterJsonKeys(
@@ -346,7 +346,7 @@ it('complex object - some middle node', () => {
       },
       'unit_c_list',
     ),
-  ).toEqual({
+  ).toStrictEqual({
     objects: [
       {
         unit_b_list: [
@@ -393,12 +393,12 @@ it('complex object - some middle node', () => {
 });
 
 it('complex array', () => {
-  expect(filterJsonKeys([1, 2], 'a')).toEqual([]);
-  expect(filterJsonKeys([{ c1: { c2: { c3: [1, 2, 3] } } }, 2], 'c1')).toEqual([
+  expect(filterJsonKeys([1, 2], 'a')).toStrictEqual([]);
+  expect(filterJsonKeys([{ c1: { c2: { c3: [1, 2, 3] } } }, 2], 'c1')).toStrictEqual([
     { c1: { c2: { c3: [1, 2, 3] } } },
   ]);
 });
 
 it("root shouldn't be filtered", () => {
-  expect(filterJsonKeys({ a: 1 }, 'b')).toEqual({});
+  expect(filterJsonKeys({ a: 1 }, 'b')).toStrictEqual({});
 });

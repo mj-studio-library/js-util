@@ -9,20 +9,20 @@ describe('GroupByObject', () => {
   it('simple case', () => {
     const data = [d1, d2, d3, d4];
 
-    expect(groupByObject(data, (item) => item.age)).toEqual({
+    expect(groupByObject(data, (item) => item.age)).toStrictEqual({
       12: [d1, d2],
       14: [d3],
       25: [d4],
     });
 
-    expect(groupByObject(data, (item) => item.name)).toEqual({
+    expect(groupByObject(data, (item) => item.name)).toStrictEqual({
       black: [d3, d4],
       mj: [d1],
       q: [d2],
     });
 
     // @ts-ignore
-    expect(groupByObject(data, (item) => item?.parent?.age)).toEqual({
+    expect(groupByObject(data, (item) => item?.parent?.age)).toStrictEqual({
       59: [d1],
       64: [d2],
       undefined: [d3, d4],

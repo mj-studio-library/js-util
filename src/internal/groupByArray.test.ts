@@ -9,9 +9,9 @@ describe('GroupByArray', () => {
   it('simple case', () => {
     const data = [d1, d2, d3, d4];
 
-    expect(groupByArray(data, (item) => item.age)).toEqual([[d1, d2], [d3], [d4]]);
-    expect(groupByArray(data, (item) => item.name)).toEqual([[d1], [d2], [d3, d4]]);
+    expect(groupByArray(data, (item) => item.age)).toStrictEqual([[d1, d2], [d3], [d4]]);
+    expect(groupByArray(data, (item) => item.name)).toStrictEqual([[d1], [d2], [d3, d4]]);
     // @ts-ignore
-    expect(groupByArray(data, (item) => item?.parent?.age)).toEqual([[d1], [d2], [d3, d4]]);
+    expect(groupByArray(data, (item) => item?.parent?.age)).toStrictEqual([[d1], [d2], [d3, d4]]);
   });
 });

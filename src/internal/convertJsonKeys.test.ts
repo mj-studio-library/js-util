@@ -4,26 +4,26 @@ it('Falsy values return itself', () => {
   expect(convertJsonKeys(undefined, {})).toBeUndefined();
   expect(convertJsonKeys(null, {})).toBeNull();
   // @ts-ignore
-  expect(convertJsonKeys('', {})).toEqual('');
+  expect(convertJsonKeys('', {})).toStrictEqual('');
 });
 
 it('not Array and not object values return itself', () => {
   // @ts-ignore
-  expect(convertJsonKeys('str', {})).toEqual('str');
+  expect(convertJsonKeys('str', {})).toStrictEqual('str');
 
   // @ts-ignore
-  expect(convertJsonKeys(123, {})).toEqual(123);
+  expect(convertJsonKeys(123, {})).toStrictEqual(123);
 
   // @ts-ignore
-  expect(convertJsonKeys(true, {})).toEqual(true);
+  expect(convertJsonKeys(true, {})).toStrictEqual(true);
 });
 
 it('simple', () => {
-  expect(convertJsonKeys({ a: 1 }, { a: 'b' })).toEqual({ b: 1 });
+  expect(convertJsonKeys({ a: 1 }, { a: 'b' })).toStrictEqual({ b: 1 });
 
-  expect(convertJsonKeys([1, 2, 3, 4, 5], { a: 'b' })).toEqual([1, 2, 3, 4, 5]);
+  expect(convertJsonKeys([1, 2, 3, 4, 5], { a: 'b' })).toStrictEqual([1, 2, 3, 4, 5]);
 
-  expect(convertJsonKeys([1, 2, 3, 4, 5], { 0: '1' })).toEqual([1, 2, 3, 4, 5]);
+  expect(convertJsonKeys([1, 2, 3, 4, 5], { 0: '1' })).toStrictEqual([1, 2, 3, 4, 5]);
 });
 
 it('complex', () => {
@@ -37,7 +37,7 @@ it('complex', () => {
       },
       { current_user_high_ratio_100: 'userHighRatio' },
     ),
-  ).toEqual({
+  ).toStrictEqual({
     userHighRatio: 99.7,
     after_user_high_ratio_100: 99.1,
     need_problem_number: 2,
@@ -97,7 +97,7 @@ it('complex', () => {
         unit_d_name: 'name',
       },
     ),
-  ).toEqual({
+  ).toStrictEqual({
     demotestSrl: 2, // interger, Non-Nullable
     demotest_order: 2, // interger, Non-Nullable
     problems: [

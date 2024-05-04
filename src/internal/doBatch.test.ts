@@ -77,5 +77,5 @@ it('Promise return', async () => {
 
   expect(returns).toHaveLength(3);
   expect(await returns[0]).toBe(1);
-  expect(await Promise.all(returns)).toEqual([1, 2, 3]);
+  expect(await Promise.all(returns)).toStrictEqual([1, 2, 3]);
 });

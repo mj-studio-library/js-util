@@ -7,14 +7,14 @@ function isArray(objOrArray: JSONCandidate): objOrArray is any[] {
 
 export type ReplaceJsonKeysOptions = {
   stripUndefined?: boolean;
-  replaceMap?: Record<string, any>;
+  replacer?: Record<string, Function | any>;
   postLeafTransform?: (value: any) => string;
 };
 
 /**
- * replace all json keys recursively
+ * replace all json value matches with key selector
  */
-export default function replaceJsonKeys<T extends JSONCandidate>(
+export default function replaceJsonValuesByKey<T extends JSONCandidate>(
   objOrArr: T,
   options: Partial<Omit<ReplaceJsonKeysOptions, 'keyFilter'>>,
 ): T {
@@ -27,22 +27,22 @@ export default function replaceJsonKeys<T extends JSONCandidate>(
   }
 
   if (isArray(objOrArr)) {
-    return objOrArr.map((v) => replaceJsonKeys(v, options)) as any;
+    return objOrArr.map((v) => replaceJsonValuesByKey(v, options)) as any;
   } else {
     const result: object = {};
 
     Object.entries(objOrArr).forEach(([key, value]) => {
-      if (options.replaceMap && options.replaceMap[key]) {
-        if (typeof options.replaceMap[key] === 'function') {
-          result[key] = options.replaceMap[key](value);
+      if (options.replacer && options.replacer[key]) {
+        if (typeof options.replacer[key] === 'function') {
+          result[key] = options.replacer[key](value);
         } else {
-          result[key] = options.replaceMap[key];
+          result[key] = options.replacer[key];
         }
       } else {
         if (isPlainObject(value)) {
-          value = replaceJsonKeys(value, options);
+          value = replaceJsonValuesByKey(value, options);
         } else if (isArray(value)) {
-          value = value.map((v) => replaceJsonKeys(v, options));
+          value = value.map((v) => replaceJsonValuesByKey(v, options));
         }
 
         result[key] = value;

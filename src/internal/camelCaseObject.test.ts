@@ -17,7 +17,7 @@ describe('camelCase function test', (): void => {
         user_srl: 16,
         leveltest_units: ['2001', '2002'],
       }),
-    ).toEqual({
+    ).toStrictEqual({
       leveltestSrl: 31,
       order: 2,
       expectedStartNum: 2,
@@ -34,7 +34,7 @@ describe('camelCase function test', (): void => {
   it('change object to camelCase in nested object', (): void => {
     const obj = { a_b_c: { c_c_c: 1, b_b_b: [{ d_d_d: 1 }, 2, 3] } };
 
-    expect(toCamelCase(obj)).toEqual({
+    expect(toCamelCase(obj)).toStrictEqual({
       aBC: { cCC: 1, bBB: [{ dDD: 1 }, 2, 3] },
     });
   });
@@ -43,7 +43,7 @@ describe('camelCase function test', (): void => {
     const obj = { a_b_c: { c_c_c: 1, b_b_b: [{ d_d_d: 1 }, 2, 3] } };
     const arr = [obj, obj, obj];
 
-    expect(toCamelCase(arr)).toEqual([
+    expect(toCamelCase(arr)).toStrictEqual([
       { aBC: { cCC: 1, bBB: [{ dDD: 1 }, 2, 3] } },
       { aBC: { cCC: 1, bBB: [{ dDD: 1 }, 2, 3] } },
       { aBC: { cCC: 1, bBB: [{ dDD: 1 }, 2, 3] } },
@@ -53,11 +53,11 @@ describe('camelCase function test', (): void => {
   it('change array to camelCase2', (): void => {
     const numberArray = [0, 1, 2, 3, 4];
 
-    expect(toCamelCase(numberArray)).toEqual([0, 1, 2, 3, 4]);
+    expect(toCamelCase(numberArray)).toStrictEqual([0, 1, 2, 3, 4]);
 
     const stringArray = ['2001', '2002', '2003'];
 
-    expect(toCamelCase(stringArray)).toEqual(['2001', '2002', '2003']);
+    expect(toCamelCase(stringArray)).toStrictEqual(['2001', '2002', '2003']);
   });
 
   it('change object containing non-plain-object to camelCase', (): void => {
@@ -74,7 +74,7 @@ describe('camelCase function test', (): void => {
 
     const obj = { a_b_c: instance };
 
-    expect(toCamelCase(obj)).toEqual({
+    expect(toCamelCase(obj)).toStrictEqual({
       aBC: instance,
     });
   });
@@ -99,7 +99,7 @@ describe('camelCase function test', (): void => {
       ],
     } as const;
 
-    expect(camelCaseObject(obj)).toEqual({
+    expect(camelCaseObject(obj)).toStrictEqual({
       summaryCards: [
         [
           {
