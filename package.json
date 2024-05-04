@@ -1,6 +1,6 @@
 {
   "name": "@mj-studio/js-util",
-  "version": "1.0.35",
+  "version": "1.0.36",
   "description": "Custom JavaScript Utilities for MJ Studio",
   "homepage": "https://github.com/mj-studio-library/js-util",
   "scripts": {

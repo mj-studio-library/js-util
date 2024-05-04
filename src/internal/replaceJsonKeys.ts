@@ -11,10 +11,13 @@ export type ReplaceJsonKeysOptions = {
   postLeafTransform?: (value: any) => string;
 };
 
-export default function replaceJsonKeys(
-  objOrArr: JSONCandidate,
+/**
+ * replace all json keys recursively
+ */
+export default function replaceJsonKeys<T extends JSONCandidate>(
+  objOrArr: T,
   options: Partial<Omit<ReplaceJsonKeysOptions, 'keyFilter'>>,
-): JSONCandidate {
+): T {
   if (!objOrArr) {
     return objOrArr;
   }
@@ -24,7 +27,7 @@ export default function replaceJsonKeys(
   }
 
   if (isArray(objOrArr)) {
-    return objOrArr.map((v) => replaceJsonKeys(v, options));
+    return objOrArr.map((v) => replaceJsonKeys(v, options)) as any;
   } else {
     const result: object = {};
 
@@ -61,6 +64,6 @@ export default function replaceJsonKeys(
       }
     });
 
-    return result;
+    return result as T;
   }
 }
