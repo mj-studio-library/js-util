@@ -1,7 +1,6 @@
 import camelCase from './internal/camelCase';
 import camelCaseObject, { JSONCandidate } from './internal/camelCaseObject';
 import { capitalize } from './internal/capitalize';
-import convertJsonKeys from './internal/convertJsonKeys';
 import doBatch from './internal/doBatch';
 import filterJsonKeys from './internal/filterJsonKeys';
 import { filterNonNullishKeys } from './internal/filterNonNullishKeys';
@@ -49,7 +48,6 @@ export {
   isPlainObject,
   camelCase,
   camelCaseObject,
-  convertJsonKeys,
   JSONCandidate,
   ReplaceJsonKeysOptions,
   reverseObjectKeyValues,
