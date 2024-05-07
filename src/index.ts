@@ -3,8 +3,8 @@ import camelCaseObject, { JSONCandidate } from './internal/camelCaseObject';
 import { capitalize } from './internal/capitalize';
 import doBatch from './internal/doBatch';
 import filterJsonKeys from './internal/filterJsonKeys';
+import { filterNonNullish } from './internal/filterNonNullish';
 import { filterNonNullishKeys } from './internal/filterNonNullishKeys';
-import { filterNullish } from './internal/filterNullish';
 import { formatJson } from './internal/formatJson';
 import { generateArray } from './internal/generateArray';
 import groupByArray from './internal/groupByArray';
@@ -59,7 +59,7 @@ export {
   filterJsonKeys,
   is,
   randomItem,
-  filterNullish,
+  filterNonNullish,
   generateArray,
   toggled,
   padZero,
