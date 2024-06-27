@@ -1,11 +1,9 @@
-import { camelCaseObject } from '../index';
-
-import toCamelCase from './camelCaseObject';
+import { camelCaseObject } from './camelCaseObject';
 
 describe('camelCase function test', (): void => {
   it('general object to camelCase', (): void => {
     expect(
-      toCamelCase({
+      camelCaseObject({
         leveltest_srl: 31,
         order: 2,
         expected_start_num: 2,
@@ -34,7 +32,7 @@ describe('camelCase function test', (): void => {
   it('change object to camelCase in nested object', (): void => {
     const obj = { a_b_c: { c_c_c: 1, b_b_b: [{ d_d_d: 1 }, 2, 3] } };
 
-    expect(toCamelCase(obj)).toStrictEqual({
+    expect(camelCaseObject(obj)).toStrictEqual({
       aBC: { cCC: 1, bBB: [{ dDD: 1 }, 2, 3] },
     });
   });
@@ -43,7 +41,7 @@ describe('camelCase function test', (): void => {
     const obj = { a_b_c: { c_c_c: 1, b_b_b: [{ d_d_d: 1 }, 2, 3] } };
     const arr = [obj, obj, obj];
 
-    expect(toCamelCase(arr)).toStrictEqual([
+    expect(camelCaseObject(arr)).toStrictEqual([
       { aBC: { cCC: 1, bBB: [{ dDD: 1 }, 2, 3] } },
       { aBC: { cCC: 1, bBB: [{ dDD: 1 }, 2, 3] } },
       { aBC: { cCC: 1, bBB: [{ dDD: 1 }, 2, 3] } },
@@ -53,11 +51,11 @@ describe('camelCase function test', (): void => {
   it('change array to camelCase2', (): void => {
     const numberArray = [0, 1, 2, 3, 4];
 
-    expect(toCamelCase(numberArray)).toStrictEqual([0, 1, 2, 3, 4]);
+    expect(camelCaseObject(numberArray)).toStrictEqual([0, 1, 2, 3, 4]);
 
     const stringArray = ['2001', '2002', '2003'];
 
-    expect(toCamelCase(stringArray)).toStrictEqual(['2001', '2002', '2003']);
+    expect(camelCaseObject(stringArray)).toStrictEqual(['2001', '2002', '2003']);
   });
 
   it('change object containing non-plain-object to camelCase', (): void => {
@@ -74,13 +72,13 @@ describe('camelCase function test', (): void => {
 
     const obj = { a_b_c: instance };
 
-    expect(toCamelCase(obj)).toStrictEqual({
+    expect(camelCaseObject(obj)).toStrictEqual({
       aBC: instance,
     });
   });
 
   it('undefined should return undefined', () => {
-    expect(toCamelCase(undefined)).toBeUndefined();
+    expect(camelCaseObject(undefined)).toBeUndefined();
   });
 
   it('nested array', () => {

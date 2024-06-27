@@ -1,5 +1,5 @@
 import type { JSONCandidate } from './camelCaseObject';
-import isPlainObject from './isPlainObject';
+import { isPlainObject } from './isPlainObject';
 
 function isArray(objOrArray: JSONCandidate): objOrArray is any[] {
   return Array.isArray(objOrArray);
@@ -14,7 +14,7 @@ export type ReplaceJsonKeysOptions = {
 /**
  * replace all json value matches with key selector
  */
-export default function replaceJsonValuesRecursively<T extends JSONCandidate>(
+export function replaceJsonValuesRecursively<T extends JSONCandidate>(
   objOrArr: T,
   options: Partial<Omit<ReplaceJsonKeysOptions, 'keyFilter'>>,
 ): T {

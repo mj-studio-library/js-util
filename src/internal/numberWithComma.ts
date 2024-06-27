@@ -1,4 +1,4 @@
-import is from './is';
+import { is } from './is';
 
 export function numberWithComma(x?: number): string {
   if (!is.number(x)) {

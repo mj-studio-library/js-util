@@ -1,6 +1,6 @@
 import type { JSONCandidate } from './camelCaseObject';
-import is from './is';
-import isPlainObject from './isPlainObject';
+import { is } from './is';
+import { isPlainObject } from './isPlainObject';
 
 function isArray(objOrArray: JSONCandidate): objOrArray is any[] {
   return Array.isArray(objOrArray);
@@ -14,7 +14,7 @@ export type ReplaceJsonKeyRecursivelyOption = {
 /**
  * replace all json keys recursively
  */
-export default function replaceJsonKeysRecursively<T extends JSONCandidate>(
+export function replaceJsonKeysRecursively<T extends JSONCandidate>(
   objOrArr: T,
   options: Partial<Omit<ReplaceJsonKeyRecursivelyOption, 'keyFilter'>>,
 ): T {

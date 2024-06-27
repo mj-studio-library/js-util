@@ -1,4 +1,4 @@
-import is from './is';
+import { is } from './is';
 
 export function toSiUnitString(n: number): string {
   if (!is.number(n)) {

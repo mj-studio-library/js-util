@@ -4,7 +4,7 @@
  * @param str snake_case string to convert camelCase
  * @todo I am regex newbie, any man fix this with more fancy way?
  */
-function camelCase(str: string): string {
+export function camelCase(str: string): string {
   return str
     .trim() // 1. remove side white spaces
     .replace(/[:-]/g, '_')
@@ -14,5 +14,3 @@ function camelCase(str: string): string {
       return word.charAt(word.length - 1).toUpperCase();
     });
 }
-
-export default camelCase;

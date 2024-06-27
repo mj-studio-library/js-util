@@ -1,4 +1,4 @@
-import doBatch from './doBatch';
+import { doBatch } from './doBatch';
 
 it('simple', () => {
   expect.assertions(3);

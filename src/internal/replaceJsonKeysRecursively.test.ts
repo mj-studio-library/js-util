@@ -1,4 +1,4 @@
-import replaceJsonKeysRecursively from './replaceJsonKeysRecursively';
+import { replaceJsonKeysRecursively } from './replaceJsonKeysRecursively';
 
 it('Falsy values return itself', () => {
   expect(replaceJsonKeysRecursively(undefined, {})).toBeUndefined();

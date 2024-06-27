@@ -1,4 +1,4 @@
-import is from './is';
+import { is } from './is';
 
 export function padZero(number: number | undefined, len = 2): string {
   if (!is.number(number)) {

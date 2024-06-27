@@ -63,6 +63,6 @@ function _filterJsonKeys(
   }
 }
 
-export default function filterJsonKeys(x: JSONCandidate, filter: Filter): JSONCandidate {
+export function filterJsonKeys(x: JSONCandidate, filter: Filter): JSONCandidate {
   return _filterJsonKeys(x, filter, false, true)[1];
 }

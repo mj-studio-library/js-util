@@ -1,4 +1,4 @@
-import isPlainObject from './isPlainObject';
+import { isPlainObject } from './isPlainObject';
 
 describe('test isPlainObject', () => {
   it('return value with non-object should be false', () => {

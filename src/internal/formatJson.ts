@@ -1,4 +1,4 @@
-import is from './is';
+import { is } from './is';
 
 export function formatJson(a: any) {
   if (is.number(a) || is.string(a) || !a) {

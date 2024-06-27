@@ -1,4 +1,4 @@
-import withTimeout from './withTimeout';
+import { withTimeout } from './withTimeout';
 
 jest.useRealTimers();
 

@@ -1,4 +1,4 @@
-import withMinimumResolveTime from './withMinimumResolveTime';
+import { withMinimumResolveTime } from './withMinimumResolveTime';
 
 jest.useRealTimers();
 

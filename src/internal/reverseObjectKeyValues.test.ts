@@ -1,4 +1,4 @@
-import reverseObjectKeyValues from './reverseObjectKeyValues';
+import { reverseObjectKeyValues } from './reverseObjectKeyValues';
 
 it('Fasly values return itself', () => {
   expect(reverseObjectKeyValues(undefined)).toBeUndefined();

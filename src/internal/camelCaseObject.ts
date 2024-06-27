@@ -1,5 +1,4 @@
-import camelCase from './camelCase';
-import isPlainObject from './isPlainObject';
+import { camelCase, isPlainObject } from '../index';
 
 export type JSONCandidate = any[] | object | undefined | null | string | number | boolean;
 
@@ -7,7 +6,7 @@ function isArray(objOrArray: JSONCandidate): objOrArray is any[] {
   return Array.isArray(objOrArray);
 }
 
-function camelCaseObject(objOrArr: JSONCandidate): JSONCandidate {
+export function camelCaseObject(objOrArr: JSONCandidate): JSONCandidate {
   if (objOrArr === 0 || objOrArr === null) {
     return objOrArr;
   }
@@ -38,5 +37,3 @@ function camelCaseObject(objOrArr: JSONCandidate): JSONCandidate {
     return result;
   }
 }
-
-export default camelCaseObject;

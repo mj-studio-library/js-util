@@ -1,4 +1,4 @@
-import isPlainObject from './isPlainObject';
+import { isPlainObject } from './isPlainObject';
 
 type Falsy = undefined | null | 0 | false | '';
 type Func = (...args: any[]) => any;
@@ -49,9 +49,7 @@ const isCheck = {
     isType.array(candidate) && candidate.length > 0,
 };
 
-const is = {
+export const is = {
   ...isType,
   ...isCheck,
 };
-
-export default is;

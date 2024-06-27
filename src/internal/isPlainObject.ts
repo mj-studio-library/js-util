@@ -8,7 +8,7 @@ function isObject(any): any is object {
  * [isPlainObject.js](https://github.com/lodash/lodash/blob/master/isPlainObject.js)
  * @param value
  */
-function isPlainObject(value: any): value is object {
+export function isPlainObject(value: any): value is object {
   if (!value || !isObject(value)) {
     return false;
   }
@@ -25,5 +25,3 @@ function isPlainObject(value: any): value is object {
 
   return Object.getPrototypeOf(value) === proto;
 }
-
-export default isPlainObject;

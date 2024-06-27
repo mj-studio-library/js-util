@@ -1,4 +1,4 @@
-import is from './is';
+import { is } from './is';
 
 export function capitalize(str: string): string {
   if (is.notEmptyString(str)) {

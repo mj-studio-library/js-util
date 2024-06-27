@@ -1,12 +1,12 @@
 import type { JSONCandidate } from './camelCaseObject';
-import isPlainObject from './isPlainObject';
+import { isPlainObject } from './isPlainObject';
 import { snakeCase } from './snakeCase';
 
 function isArray(objOrArray: JSONCandidate): objOrArray is any[] {
   return Array.isArray(objOrArray);
 }
 
-function snakeCaseObject(objOrArr: JSONCandidate): JSONCandidate {
+export function snakeCaseObject(objOrArr: JSONCandidate): JSONCandidate {
   if (objOrArr === 0 || objOrArr === null) {
     return objOrArr;
   }
@@ -37,5 +37,3 @@ function snakeCaseObject(objOrArr: JSONCandidate): JSONCandidate {
     return result;
   }
 }
-
-export default snakeCaseObject;

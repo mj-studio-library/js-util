@@ -1,4 +1,4 @@
-import filterJsonKeys from './filterJsonKeys';
+import { filterJsonKeys } from './filterJsonKeys';
 
 it('simple object', () => {
   expect(filterJsonKeys({ a: 1, b: 1 }, 'a')).toStrictEqual({ a: 1 });
