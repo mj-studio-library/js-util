@@ -1,6 +1,6 @@
 {
   "name": "@mj-studio/js-util",
-  "version": "1.1.12",
+  "version": "1.1.13",
   "description": "Custom JavaScript Utilities for MJ Studio",
   "homepage": "https://github.com/mj-studio-library/js-util",
   "scripts": {
@@ -35,8 +35,8 @@
   "module": "dist/js-util.esm.js",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/js-util.esm.js"
+      "require": "./dist/index.js",
+      "import": "./dist/js-util.esm.js"
     }
   },
   "typings": "dist/index.d.ts"
