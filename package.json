@@ -1,6 +1,6 @@
 {
   "name": "@mj-studio/js-util",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "Custom JavaScript Utilities for MJ Studio",
   "homepage": "https://github.com/mj-studio-library/js-util",
   "scripts": {
@@ -8,8 +8,8 @@
     "t": "yarn lint --cache && yarn tsc && yarn jest --coverage -u",
     "lint": "eslint src --ext .ts,.tsx,.js,.jsx",
     "test": "jest",
-    "release": "yarn lint && yarn tsc && zx tool/publish.mjs",
-    "build": "rm -rf dist && yarn tsc"
+    "release": "zx tool/publish.mjs",
+    "build": "tsdx build"
   },
   "repository": {
     "type": "git",
@@ -24,14 +24,14 @@
     "jest": "^29.7.0",
     "prettier": "^3.2.5",
     "ts-jest": "^29.1.2",
+    "tsdx": "^0.14.1",
     "typescript": "5.3.3"
   },
   "files": [
-    "dist",
-    "esm"
+    "dist"
   ],
   "type": "module",
+  "packageManager": "yarn@4.1.1",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "packageManager": "yarn@4.1.1"
+  "typings": "dist/index.d.ts"
 }
