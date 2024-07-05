@@ -3,5 +3,10 @@ export function generateArray(size: number): number[] {
     return [];
   }
 
-  return [...new Array(size).keys()];
+  const ret = [];
+  for (let i = 0; i < size; i++) {
+    ret.push(i);
+  }
+
+  return ret;
 }
