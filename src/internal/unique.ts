@@ -1,3 +1,3 @@
 export function unique<T>(arr: T[]): T[] {
-  return [...new Set(arr)];
+  return arr.filter((value, index, self) => self.indexOf(value) === index);
 }
