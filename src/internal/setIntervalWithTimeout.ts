@@ -12,7 +12,9 @@ export class TimeoutHandler {
 
   clear() {
     this.cleared = true;
-    clearTimeout(this.handlerRef.id as any);
+    if (this.handlerRef.id !== -1) {
+      clearTimeout(this.handlerRef.id as any);
+    }
   }
 }
 
