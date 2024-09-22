@@ -36,3 +36,4 @@ export { toFixedIfNeed } from './internal/toFixedIfNeed';
 export { toggled } from './internal/toggled';
 export { toSiUnitString } from './internal/toSiUnitString';
 export { unique } from './internal/unique';
+export * from './internal/Timer';
