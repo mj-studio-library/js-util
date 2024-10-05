@@ -1,4 +1,4 @@
-### Version of dooboo-hooks
+### Version of js-utils
 
 ### Version of react-native
 
