@@ -1,5 +1,6 @@
+import isPrimitive from '../internal/isPrimitive';
+
 import type { JSONCandidate } from './camelCaseObject';
-import isPrimitive from './isPrimitive';
 
 type Filter = ((key: string) => boolean) | string[] | string;
 

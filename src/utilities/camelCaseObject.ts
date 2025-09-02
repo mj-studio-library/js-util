@@ -1,5 +1,6 @@
+import { isPlainObject } from '../internal/isPlainObject';
+
 import { camelCase } from './camelCase';
-import { isPlainObject } from './isPlainObject';
 
 export type JSONCandidate = any[] | object | undefined | null | string | number | boolean;
 

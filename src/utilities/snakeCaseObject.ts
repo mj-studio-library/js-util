@@ -1,5 +1,6 @@
+import { isPlainObject } from '../internal/isPlainObject';
+
 import type { JSONCandidate } from './camelCaseObject';
-import { isPlainObject } from './isPlainObject';
 import { snakeCase } from './snakeCase';
 
 function isArray(objOrArray: JSONCandidate): objOrArray is any[] {

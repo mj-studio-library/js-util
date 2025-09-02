@@ -1,5 +1,6 @@
-import { isPlainObject } from './isPlainObject';
-import { isPromise } from './isPromise';
+import { isPlainObject } from '../internal/isPlainObject';
+import isPrimitive from '../internal/isPrimitive';
+import { isPromise } from '../internal/isPromise';
 
 type Falsy = undefined | null | 0 | false | '';
 type Func = (...args: any[]) => any;
@@ -32,6 +33,8 @@ const isType = {
   array: <T>(candidate: any): candidate is Array<T> => Array.isArray(candidate),
   boolean: (candidate: any): candidate is boolean => typeof candidate === 'boolean',
   promise: <T>(p: Promise<T> | any): p is Promise<T> => isPromise<T>(p),
+  primitive: (candidate: unknown): candidate is string | number | boolean | null | undefined =>
+    isPrimitive(candidate),
 };
 
 const isCheck = {

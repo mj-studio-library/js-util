@@ -29,7 +29,7 @@ const rsCombo = `[${rsComboRange}]`;
 const rsDigit = '\\d';
 const rsDingbat = `[${rsDingbatRange}]`;
 const rsLower = `[${rsLowerRange}]`;
-// eslint-disable-next-line max-len
+
 const rsMisc = `[^${rsAstralRange}${rsBreakRange + rsDigit + rsDingbatRange + rsLowerRange + rsUpperRange}]`;
 const rsFitz = '\\ud83c[\\udffb-\\udfff]';
 const rsModifier = `(?:${rsCombo}|${rsFitz})`;
@@ -53,6 +53,7 @@ const rsSeq = rsOptVar + reOptMod + rsOptJoin;
 const rsEmoji = `(?:${[rsDingbat, rsRegional, rsSurrPair].join('|')})${rsSeq}`;
 
 const reUnicodeWords = RegExp(
+  // eslint-disable-next-line no-misleading-character-class
   [
     `${rsUpper}?${rsLower}+${rsOptContrLower}(?=${[rsBreak, rsUpper, '$'].join('|')})`,
     `${rsMiscUpper}+${rsOptContrUpper}(?=${[rsBreak, rsUpper + rsMiscLower, '$'].join('|')})`,
