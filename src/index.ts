@@ -1,5 +1,5 @@
 export { camelCase } from './utilities/camelCase';
-export { camelCaseObject, JSONCandidate } from './utilities/camelCaseObject';
+export { camelCaseObject, type JSONCandidate } from './utilities/camelCaseObject';
 export { doBatch } from './utilities/doBatch';
 export { filterJsonKeys } from './utilities/filterJsonKeys';
 export { groupByArray } from './utilities/groupByArray';
@@ -14,7 +14,7 @@ export { snakeCaseObject } from './utilities/snakeCaseObject';
 
 export {
   replaceJsonValuesRecursively,
-  ReplaceJsonKeysOptions,
+  type ReplaceJsonKeysOptions,
 } from './utilities/replaceJsonValuesRecursively';
 
 export { capitalize } from './utilities/capitalize';
@@ -35,7 +35,7 @@ export { toggled } from './utilities/toggled';
 export { toSiUnitString } from './utilities/toSiUnitString';
 export { unique } from './utilities/unique';
 export { parseSecond } from './utilities/parseSecond';
-export { SecFormat, formatSec, SecFormats } from './utilities/SecFormat';
+export { SecFormat, formatSec, type SecFormats } from './utilities/SecFormat';
 export { removeValueByKeyInObject } from './utilities/removeValueByKeyInObject';
 export * from './utilities/Timer';
 export { clamp } from './utilities/clamp';
