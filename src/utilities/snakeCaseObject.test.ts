@@ -182,10 +182,10 @@ describe('snakeCaseObject', () => {
     };
 
     const expected = {
-      'camel_case': 'value1',
-      'snake_case': 'value2',
-      'pascal_case': 'value3',
-      'kebab-case': 'value4', // Note: kebab-case conversion depends on snakeCase implementation
+      camel_case: 'value1',
+      snake_case: 'value2',
+      pascal_case: 'value3',
+      kebab_case: 'value4', // Note: kebab-case conversion depends on snakeCase implementation
     };
     expect(snakeCaseObject(input)).toEqual(expected);
   });

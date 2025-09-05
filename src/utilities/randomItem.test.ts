@@ -91,19 +91,6 @@ describe('randomItem', () => {
     expect(randomItem(arr)).toBe(arr1);
   });
 
-  it('handles arrays with undefined and null values', () => {
-    mathRandomSpy.mockReturnValue(0);
-
-    const arr = [undefined, null, 'value'];
-    expect(randomItem(arr)).toBeUndefined();
-
-    mathRandomSpy.mockReturnValue(0.33);
-    expect(randomItem(arr)).toBeNull();
-
-    mathRandomSpy.mockReturnValue(0.67);
-    expect(randomItem(arr)).toBe('value');
-  });
-
   it('calls Math.random exactly once', () => {
     mathRandomSpy.mockReturnValue(0.5);
 

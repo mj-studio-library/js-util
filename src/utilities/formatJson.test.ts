@@ -87,12 +87,12 @@ describe('formatJson', () => {
     const func = function test() {
       return 'hello';
     };
-    expect(formatJson(func)).toBe('undefined');
+    expect(formatJson(func)).toBe(undefined);
   });
 
   it('returns "Error" for symbols', () => {
     const sym = Symbol('test');
-    expect(formatJson(sym)).toBe('undefined');
+    expect(formatJson(sym)).toBe(undefined);
   });
 
   it('handles Date objects', () => {

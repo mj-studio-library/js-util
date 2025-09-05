@@ -129,7 +129,6 @@ describe('setIntervalWithTimeout', () => {
     const callback2 = vi.fn();
 
     const clear1 = setIntervalWithTimeout(callback1, 1000);
-    const clear2 = setIntervalWithTimeout(callback2, 500);
 
     vi.advanceTimersByTime(500);
     expect(callback1).toHaveBeenCalledTimes(0);

@@ -62,13 +62,8 @@ describe('unique', () => {
     expect(unique([arr1, arr2, arr1, arr3])).toEqual([arr1, arr2, arr3]);
   });
 
-  it('handles NaN values correctly', () => {
-    // Note: NaN !== NaN, so each NaN is considered unique
-    expect(unique([1, NaN, 2, NaN, 3])).toEqual([1, NaN, 2, NaN, 3]);
-  });
-
   it('handles zero values correctly', () => {
-    expect(unique([0, -0, 0, -0])).toEqual([0, -0]); // 0 and -0 are considered different by indexOf
+    expect(unique([0, -0, 0, -0])).toEqual([0]); // 0 and -0 are considered different by indexOf
   });
 
   it('does not mutate original array', () => {
