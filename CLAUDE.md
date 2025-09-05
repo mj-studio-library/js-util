@@ -22,22 +22,23 @@ This project is MJ Studio's JavaScript utilities library. Written in TypeScript,
 
 ### Project Structure
 - `src/` - All source code
-  - `src/internal/` - Individual utility functions (separated by function)
-  - `src/internal/promise/` - Promise-related utilities
+  - `src/utilities/` - Individual utility functions (separated by function)
+  - `src/internal/` - Internal helper functions and shared utilities
   - `src/index.ts` - Entry point for all public APIs
 - `test/` - Vitest configuration files
 - `tool/` - Build and publish tools
 
 ### Code Organization
-- Each utility function is organized as individual files in `src/internal/` directory
+- Each utility function is organized as individual files in `src/utilities/` directory
+- Internal helper functions are organized in `src/internal/` directory
 - Each function has corresponding `.test.ts` file (in same directory)
 - All public APIs are explicitly exported from `src/index.ts`
 - TypeScript configuration: ESNext target, source maps generation, declaration files generation
 
 ### Build System
 - **TSDX**: Library build tool (optimized for TypeScript libraries)
-- **Output**: Dual package - CommonJS (`dist/index.js`) + ESM (`dist/js-util.esm.js`)
-- **Types**: Type definitions generated as `dist/index.d.ts`
+- **Output**: Dual package - CommonJS (`dist/index.cjs`) + ESM (`dist/index.js`)
+- **Types**: Type definitions generated as `dist/index.d.ts` and `dist/index.d.cts`
 
 ### Testing Framework
 - **Vitest**: Modern testing framework with native TypeScript support
@@ -53,7 +54,7 @@ This project is MJ Studio's JavaScript utilities library. Written in TypeScript,
 ## Development Guidelines
 
 ### Adding New Utilities
-1. Create new `.ts` file in `src/internal/`
+1. Create new `.ts` file in `src/utilities/`
 2. Write JSDoc documentation for all exported functions
 3. Write tests in `.test.ts` file with same name
 4. Add export to `src/index.ts`
