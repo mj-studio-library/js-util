@@ -17,7 +17,7 @@ npm install @mj-studio/js-util
 ## API Reference
 
 | Category       | Function                                           | Description                                    |
-|----------------|----------------------------------------------------|------------------------------------------------|
+| -------------- | -------------------------------------------------- | ---------------------------------------------- |
 | **String**     | `camelCase(str)`                                   | Converts snake_case or kebab-case to camelCase |
 |                | `snakeCase(str)`                                   | Converts strings to snake_case format          |
 |                | `capitalize(str)`                                  | Capitalizes the first character                |
@@ -30,6 +30,7 @@ npm install @mj-studio/js-util
 |                | `groupByObject(arr, getKey)`                       | Groups array elements into object              |
 |                | `doBatch(arr, work, batchCount)`                   | Processes arrays in batches                    |
 |                | `unique(arr)`                                      | Removes duplicate values                       |
+|                | `uniqueBy(arr, getKey)`                            | Removes duplicates by selected key             |
 |                | `generateArray(size)`                              | Creates array [0, 1, 2, ..., size-1]           |
 |                | `randomItem(arr)`                                  | Returns random element                         |
 |                | `lastOf(arr)`                                      | Returns last element                           |

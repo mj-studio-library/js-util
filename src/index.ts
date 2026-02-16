@@ -34,6 +34,7 @@ export { toFixedIfNeed } from './utilities/toFixedIfNeed';
 export { toggled } from './utilities/toggled';
 export { toSiUnitString } from './utilities/toSiUnitString';
 export { unique } from './utilities/unique';
+export { uniqueBy } from './utilities/uniqueBy';
 export { parseSecond } from './utilities/parseSecond';
 export { SecFormat, formatSec, type SecFormats } from './utilities/SecFormat';
 export { removeValueByKeyInObject } from './utilities/removeValueByKeyInObject';
