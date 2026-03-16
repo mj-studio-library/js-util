@@ -1,0 +1,1126 @@
+# @mj-studio/js-util
+
+A manually maintained reference for the public API in this repository.
+Keep it aligned with `src/index.ts`, implementation behavior, and `README.md`.
+
+## Installation
+
+```bash
+pnpm add @mj-studio/js-util
+```
+
+## Import
+
+```ts
+import { camelCase } from '@mj-studio/js-util'
+```
+
+## API
+
+### String
+
+#### `camelCase(str: string): string`
+Converts a snake_case or kebab-case string to camelCase
+
+**Rules:**
+- Use `camelCase(str: string): string`.
+- Returns the converted camelCase string.
+- Pass `str` as the string to convert to camelCase.
+
+**Good:**
+```ts
+camelCase('user_name') // Returns: 'userName'
+camelCase('user-name') // Returns: 'userName'
+```
+
+
+**When to apply:**
+- When you are normalizing or formatting string values.
+
+#### `capitalize(str: string): string`
+Capitalizes the first character of a string
+
+**Rules:**
+- Use `capitalize(str: string): string`.
+- Returns the string with its first character capitalized.
+- Pass `str` as the string to capitalize.
+
+**Good:**
+```ts
+capitalize('hello') // Returns: 'Hello'
+capitalize('hello world') // Returns: 'Hello world'
+```
+
+
+**When to apply:**
+- When you are normalizing or formatting string values.
+
+#### `lastMatchIndex(str: string, match: string): number`
+Finds the last occurrence index of a substring in a string
+
+**Rules:**
+- Use `lastMatchIndex(str: string, match: string): number`.
+- Returns index of last occurrence, -1 if not found.
+- Pass `str` as string to search in.
+
+**Good:**
+```ts
+lastMatchIndex('hello world hello', 'hello') // Returns: 12
+```
+
+
+**When to apply:**
+- When you are normalizing or formatting string values.
+
+#### `snakeCase(str: string): string`
+Converts a string to snake_case format
+
+**Rules:**
+- Use `snakeCase(str: string): string`.
+- Returns the converted snake_case string.
+- Pass `str` as the string to convert to snake_case.
+
+**Good:**
+```ts
+snakeCase('userName') // Returns: 'user_name'
+snakeCase('getUserById') // Returns: 'get_user_by_id'
+```
+
+
+**When to apply:**
+- When you are normalizing or formatting string values.
+
+### Object
+
+#### `camelCaseObject(objOrArr: JSONCandidate): JSONCandidate`
+Recursively converts all object keys to camelCase
+
+**Rules:**
+- Use `camelCaseObject(objOrArr: JSONCandidate): JSONCandidate`.
+- Returns the input with all object keys converted to camelCase.
+- Pass `objOrArr` as object, array, or primitive value to transform.
+
+**Good:**
+```ts
+camelCaseObject({ user_name: 'John', user_age: 30 })
+// Returns: { userName: 'John', userAge: 30 }
+```
+
+
+**When to apply:**
+- When you are reshaping object or JSON-like data.
+
+#### `replaceJsonKeysRecursively<T extends JSONCandidate>(objOrArr: T, options: Partial<Omit<ReplaceJsonKeyRecursivelyOption, "keyFilter">>): T`
+Recursively replaces all object keys in a JSON structure using a replacer function or mapping
+
+**Rules:**
+- Use `replaceJsonKeysRecursively<T extends JSONCandidate>(objOrArr: T, options: Partial<Omit<ReplaceJsonKeyRecursivelyOption, "keyFilter">>): T`.
+- Returns the input structure with all object keys replaced according to the replacer.
+- Pass `objOrArr` as object, array, or primitive value to transform keys in.
+
+**Good:**
+```ts
+replaceJsonKeysRecursively({ old_key: 'value' }, { replacer: { 'old_key': 'new_key' } })
+// Returns: { new_key: 'value' }
+```
+
+
+**When to apply:**
+- When you are reshaping object or JSON-like data.
+
+#### `reverseObjectKeyValues<T extends Record<string, string | number>>(obj: T): T | Record<string, string>`
+Reverses the keys and values of an object
+
+**Rules:**
+- Use `reverseObjectKeyValues<T extends Record<string, string | number>>(obj: T): T | Record<string, string>`.
+- Returns new object with keys and values swapped.
+- Pass `obj` as object with string or number values to reverse.
+
+**Good:**
+```ts
+reverseObjectKeyValues({ a: '1', b: '2' })
+// Returns: { '1': 'a', '2': 'b' }
+```
+
+
+**When to apply:**
+- When you are reshaping object or JSON-like data.
+
+#### `snakeCaseObject(objOrArr: JSONCandidate): JSONCandidate`
+Recursively converts all object keys to snake_case
+
+**Rules:**
+- Use `snakeCaseObject(objOrArr: JSONCandidate): JSONCandidate`.
+- Returns the input with all object keys converted to snake_case.
+- Pass `objOrArr` as object, array, or primitive value to transform.
+
+**Good:**
+```ts
+snakeCaseObject({ userName: 'John', userAge: 30 })
+// Returns: { user_name: 'John', user_age: 30 }
+```
+
+
+**When to apply:**
+- When you are reshaping object or JSON-like data.
+
+#### `replaceJsonValuesRecursively<T extends JSONCandidate>(objOrArr: T, options: Partial<Omit<ReplaceJsonKeysOptions, "keyFilter">>): T`
+Recursively replaces values in a JSON structure based on key matching
+
+**Rules:**
+- Use `replaceJsonValuesRecursively<T extends JSONCandidate>(objOrArr: T, options: Partial<Omit<ReplaceJsonKeysOptions, "keyFilter">>): T`.
+- Returns the input structure with values replaced according to the replacer.
+- Pass `objOrArr` as object, array, or primitive value to transform values in.
+
+**Good:**
+```ts
+replaceJsonValuesRecursively({ name: 'John', age: 30 }, { replacer: { age: 25 } })
+// Returns: { name: 'John', age: 25 }
+```
+
+
+**When to apply:**
+- When you are reshaping object or JSON-like data.
+
+### Array
+
+#### `doBatch<T, R>(list: T[], work: (list: T[], batchIndex: number) => R, batchCount: number): R[]`
+Processes an array in batches and returns results from each batch
+
+**Rules:**
+- Use `doBatch<T, R>(list: T[], work: (list: T[], batchIndex: number) => R, batchCount: number): R[]`.
+- Returns array of results from each batch execution.
+- Pass `list` as array to process in batches.
+
+**Good:**
+```ts
+doBatch([1,2,3,4,5,6], (batch) => batch.reduce((sum, n) => sum + n, 0), 3)
+// Processes: [1,2,3], [4,5,6] -> Returns: [6, 15]
+```
+
+
+**When to apply:**
+- When you need a derived array or grouped collection.
+
+#### `groupByArray<T, K extends string | number>(collection: T[], getKey: ((element: T) => K) | K): T[][]`
+Groups array elements into subarrays based on a key
+
+**Rules:**
+- Use `groupByArray<T, K extends string | number>(collection: T[], getKey: ((element: T) => K) | K): T[][]`.
+- Returns array of arrays, grouped by the key.
+- Pass `collection` as array of elements to group.
+
+**Good:**
+```ts
+groupByArray(users, user => user.age)
+// Returns: [[users with age 25], [users with age 30]]
+```
+
+
+**When to apply:**
+- When you need a derived array or grouped collection.
+
+#### `groupByObject<T, K extends string | number>(collection: T[], getKey: ((element: T) => K) | K): GroupByObject<T, K>`
+Groups array elements into an object based on a key
+
+**Rules:**
+- Use `groupByObject<T, K extends string | number>(collection: T[], getKey: ((element: T) => K) | K): GroupByObject<T, K>`.
+- Returns object with keys mapping to arrays of grouped elements.
+- Pass `collection` as array of elements to group.
+
+**Good:**
+```ts
+groupByObject(users, user => user.age)
+// Returns: { 25: [users with age 25], 30: [users with age 30] }
+```
+
+
+**When to apply:**
+- When you need a derived array or grouped collection.
+
+#### `generateArray(size: number): number[]`
+Generates an array of consecutive numbers from 0 to size-1
+
+**Rules:**
+- Use `generateArray(size: number): number[]`.
+- Returns array of numbers from 0 to size-1, empty array if size < 0.
+- Pass `size` as the size of the array to generate.
+
+**Good:**
+```ts
+generateArray(5) // Returns: [0, 1, 2, 3, 4]
+```
+
+
+**When to apply:**
+- When you need a derived array or grouped collection.
+
+#### `lastOf<T>(arr: T[]): T`
+Gets the last element of an array
+
+**Rules:**
+- Use `lastOf<T>(arr: T[]): T`.
+- Returns last element of the array.
+- Pass `arr` as array to get last element from.
+
+**Good:**
+```ts
+lastOf([1, 2, 3, 4]) // Returns: 4
+```
+
+
+**When to apply:**
+- When you need a derived array or grouped collection.
+
+#### `randomItem<T>(source: T[]): T`
+Selects a random element from an array
+
+**Rules:**
+- Use `randomItem<T>(source: T[]): T`.
+- Returns random element from the array.
+- Pass `source` as array to select random element from.
+
+**Good:**
+```ts
+randomItem([1, 2, 3, 4, 5]) // Returns: random number between 1-5
+```
+
+
+**When to apply:**
+- When you need a derived array or grouped collection.
+
+#### `toggled<T>(arr: T[], element: T): T[]`
+Toggles an element in an array - adds if not present, removes if present
+
+**Rules:**
+- Use `toggled<T>(arr: T[], element: T): T[]`.
+- Returns new array with element toggled.
+- Pass `arr` as array to toggle element in.
+
+**Good:**
+```ts
+toggled([1, 2, 3], 4) // Returns: [1, 2, 3, 4]
+```
+
+
+**When to apply:**
+- When you need a derived array or grouped collection.
+
+#### `unique<T>(arr: T[]): T[]`
+Removes duplicate values from an array
+
+**Rules:**
+- Use `unique<T>(arr: T[]): T[]`.
+- Returns new array with unique values.
+- Pass `arr` as array with potential duplicate values.
+
+**Good:**
+```ts
+unique([1, 2, 2, 3, 3, 4])
+// Returns: [1, 2, 3, 4]
+```
+
+
+**When to apply:**
+- When you need a derived array or grouped collection.
+
+#### `uniqueBy<T, K>(arr: T[], getKey: (value: T) => K): T[]`
+Removes duplicate elements from an array by a selected key.
+
+**Rules:**
+- Use `uniqueBy<T, K>(arr: T[], getKey: (value: T) => K): T[]`.
+- Returns new array with unique elements by key (keeps first occurrence).
+- Pass `arr` as array with potential duplicate elements.
+
+**Good:**
+```ts
+uniqueBy(
+  [
+    { id: 1, name: 'Alice' },
+    { id: 2, name: 'Bob' },
+    { id: 1, name: 'Alice v2' },
+  ],
+  (item) => item.id,
+)
+// Returns: [{ id: 1, name: 'Alice' }, { id: 2, name: 'Bob' }]
+```
+
+
+**When to apply:**
+- When you need a derived array or grouped collection.
+
+### Promise
+
+#### `withMinimumResolveTime<T>(minimumMilli: number, promise: Promise<T>): Promise<T>`
+Ensures a Promise takes at least a minimum amount of time to resolve
+
+**Rules:**
+- Use `withMinimumResolveTime<T>(minimumMilli: number, promise: Promise<T>): Promise<T>`.
+- Returns promise that resolves after at least the minimum time.
+- Pass `minimumMilli` as minimum duration in milliseconds.
+
+**Good:**
+```ts
+const result = await withMinimumResolveTime(1000, fetchData())
+// Guarantees at least 1 second delay for UX (loading spinners)
+```
+
+
+**When to apply:**
+- When you need to control async timing behavior.
+
+#### `withTimeout<T>(milli: number, promise: Promise<T>): Promise<T>`
+Adds a timeout to a Promise, rejecting if the timeout is exceeded
+
+**Rules:**
+- Use `withTimeout<T>(milli: number, promise: Promise<T>): Promise<T>`.
+- Returns promise that resolves/rejects with original promise or timeout error.
+- Pass `milli` as timeout duration in milliseconds.
+
+**Good:**
+```ts
+const result = await withTimeout(5000, fetchUser(userId))
+// Throws error if fetchUser takes more than 5 seconds
+```
+
+
+**When to apply:**
+- When you need to control async timing behavior.
+
+### Type Check
+
+#### `is.number(candidate: any): candidate is number`
+Checks whether the candidate is a valid number.
+
+**Rules:**
+- Use `is.number(candidate: any): candidate is number`.
+- Returns a type guard that narrows the candidate to `number`.
+
+**Good:**
+```ts
+is.number(42) // true
+```
+
+
+**When to apply:**
+- When you need a runtime guard before branching on unknown input.
+
+#### `is.string(candidate: any): candidate is string`
+Checks whether the candidate is a string.
+
+**Rules:**
+- Use `is.string(candidate: any): candidate is string`.
+- Returns a type guard that narrows the candidate to `string`.
+
+**Good:**
+```ts
+is.string('hello') // true
+```
+
+
+**When to apply:**
+- When you need a runtime guard before branching on unknown input.
+
+#### `is.integerString(candidate: any): candidate is string`
+Checks whether the candidate is an integer string.
+
+**Rules:**
+- Use `is.integerString(candidate: any): candidate is string`.
+- Returns a type guard that narrows the candidate to `string`.
+
+**Good:**
+```ts
+is.integerString('42') // true
+```
+
+
+**When to apply:**
+- When you need a runtime guard before branching on unknown input.
+
+#### `is.numberString(candidate: any): candidate is string`
+Checks whether the candidate is a numeric string.
+
+**Rules:**
+- Use `is.numberString(candidate: any): candidate is string`.
+- Returns a type guard that narrows the candidate to `string`.
+
+**Good:**
+```ts
+is.numberString('3.14') // true
+```
+
+
+**When to apply:**
+- When you need a runtime guard before branching on unknown input.
+
+#### `is.null(candidate: any): candidate is null`
+Checks whether the candidate is null.
+
+**Rules:**
+- Use `is.null(candidate: any): candidate is null`.
+- Returns a type guard that narrows the candidate to `null`.
+
+**Good:**
+```ts
+is.null(null) // true
+```
+
+
+**When to apply:**
+- When you need a runtime guard before branching on unknown input.
+
+#### `is.undefined(candidate: any): candidate is undefined`
+Checks whether the candidate is undefined.
+
+**Rules:**
+- Use `is.undefined(candidate: any): candidate is undefined`.
+- Returns a type guard that narrows the candidate to `undefined`.
+
+**Good:**
+```ts
+is.undefined(undefined) // true
+```
+
+
+**When to apply:**
+- When you need a runtime guard before branching on unknown input.
+
+#### `is.nullOrUndefined(candidate: any): candidate is undefined | null`
+Checks whether the candidate is null or undefined.
+
+**Rules:**
+- Use `is.nullOrUndefined(candidate: any): candidate is undefined | null`.
+- Returns a type guard that narrows the candidate to `undefined | null`.
+
+**Good:**
+```ts
+is.nullOrUndefined(undefined) // true
+```
+
+
+**When to apply:**
+- When you need a runtime guard before branching on unknown input.
+
+#### `is.falsy<T>(candidate: T | Falsy): candidate is Falsy`
+Checks whether the candidate is falsy.
+
+**Rules:**
+- Use `is.falsy<T>(candidate: T | Falsy): candidate is Falsy`.
+- Returns a type guard that narrows the candidate to `Falsy`.
+
+**Good:**
+```ts
+is.falsy(0) // true
+```
+
+
+**When to apply:**
+- When you need a runtime guard before branching on unknown input.
+
+#### `is.truthy<T>(candidate: T | Falsy): candidate is T`
+Checks whether the candidate is truthy.
+
+**Rules:**
+- Use `is.truthy<T>(candidate: T | Falsy): candidate is T`.
+- Returns a type guard that narrows the candidate to `T`.
+
+**Good:**
+```ts
+is.truthy('hello') // true
+```
+
+
+**When to apply:**
+- When you need a runtime guard before branching on unknown input.
+
+#### `is.function<T extends Func, R extends unknown>(candidate: T | R): candidate is T`
+Checks whether the candidate is a function.
+
+**Rules:**
+- Use `is.function<T extends Func, R extends unknown>(candidate: T | R): candidate is T`.
+- Returns a type guard that narrows the candidate to `T`.
+
+**Good:**
+```ts
+is.function(() => 'hello') // true
+```
+
+
+**When to apply:**
+- When you need a runtime guard before branching on unknown input.
+
+#### `is.object(candidate: any): candidate is Record<string, unknown>`
+Checks whether the candidate is a non-null object.
+
+**Rules:**
+- Use `is.object(candidate: any): candidate is Record<string, unknown>`.
+- Returns a type guard that narrows the candidate to `Record<string, unknown>`.
+
+**Good:**
+```ts
+is.object({ value: 1 }) // true
+```
+
+
+**When to apply:**
+- When you need a runtime guard before branching on unknown input.
+
+#### `is.plainObject(candidate: any): candidate is Record<string, unknown>`
+Checks whether the candidate is a plain object.
+
+**Rules:**
+- Use `is.plainObject(candidate: any): candidate is Record<string, unknown>`.
+- Returns a type guard that narrows the candidate to `Record<string, unknown>`.
+
+**Good:**
+```ts
+is.plainObject({ value: 1 }) // true
+```
+
+
+**When to apply:**
+- When you need a runtime guard before branching on unknown input.
+
+#### `is.array<T>(candidate: any): candidate is Array<T>`
+Checks whether the candidate is an array.
+
+**Rules:**
+- Use `is.array<T>(candidate: any): candidate is Array<T>`.
+- Returns a type guard that narrows the candidate to `Array<T>`.
+
+**Good:**
+```ts
+is.array([1, 2, 3]) // true
+```
+
+
+**When to apply:**
+- When you need a runtime guard before branching on unknown input.
+
+#### `is.boolean(candidate: any): candidate is boolean`
+Checks whether the candidate is a boolean.
+
+**Rules:**
+- Use `is.boolean(candidate: any): candidate is boolean`.
+- Returns a type guard that narrows the candidate to `boolean`.
+
+**Good:**
+```ts
+is.boolean(false) // true
+```
+
+
+**When to apply:**
+- When you need a runtime guard before branching on unknown input.
+
+#### `is.promise<T>(p: Promise<T> | any): p is Promise<T>`
+Checks whether the candidate is a promise.
+
+**Rules:**
+- Use `is.promise<T>(p: Promise<T> | any): p is Promise<T>`.
+- Returns a type guard that narrows the candidate to `Promise<T>`.
+
+**Good:**
+```ts
+is.promise(Promise.resolve(1)) // true
+```
+
+
+**When to apply:**
+- When you need a runtime guard before branching on unknown input.
+
+#### `is.primitive(candidate: unknown): candidate is string | number | boolean | null | undefined`
+Checks whether the candidate is a primitive value.
+
+**Rules:**
+- Use `is.primitive(candidate: unknown): candidate is string | number | boolean | null | undefined`.
+- Returns a type guard that narrows the candidate to `string | number | boolean | null | undefined`.
+
+**Good:**
+```ts
+is.primitive('hello') // true
+```
+
+
+**When to apply:**
+- When you need a runtime guard before branching on unknown input.
+
+#### `is.notEmptyString(candidate: any): candidate is string`
+Checks whether the candidate is a non-empty string.
+
+**Rules:**
+- Use `is.notEmptyString(candidate: any): candidate is string`.
+- Returns a type guard that narrows the candidate to `string`.
+
+**Good:**
+```ts
+is.notEmptyString('hello') // true
+```
+
+
+**When to apply:**
+- When you need a runtime guard before branching on unknown input.
+
+#### `is.emptyString(candidate: any): boolean`
+Checks whether the candidate is an empty string.
+
+**Rules:**
+- Use `is.emptyString(candidate: any): boolean`.
+- Returns `boolean`.
+
+**Good:**
+```ts
+is.emptyString('') // true
+```
+
+
+**When to apply:**
+- When you need a runtime guard before branching on unknown input.
+
+#### `is.emptyArray(candidate: any): boolean`
+Checks whether the candidate is an empty array.
+
+**Rules:**
+- Use `is.emptyArray(candidate: any): boolean`.
+- Returns `boolean`.
+
+**Good:**
+```ts
+is.emptyArray([]) // true
+```
+
+
+**When to apply:**
+- When you need a runtime guard before branching on unknown input.
+
+#### `is.notEmptyArray<T>(candidate: any): candidate is Array<T>`
+Checks whether the candidate is a non-empty array.
+
+**Rules:**
+- Use `is.notEmptyArray<T>(candidate: any): candidate is Array<T>`.
+- Returns a type guard that narrows the candidate to `Array<T>`.
+
+**Good:**
+```ts
+is.notEmptyArray([1, 2, 3]) // true
+```
+
+
+**When to apply:**
+- When you need a runtime guard before branching on unknown input.
+
+### Filter
+
+#### `filterJsonKeys(x: JSONCandidate, filter: Filter): JSONCandidate`
+Filters a JSON structure to include only objects/arrays containing specified keys
+
+**Rules:**
+- Use `filterJsonKeys(x: JSONCandidate, filter: Filter): JSONCandidate`.
+- Returns filtered JSON structure containing only elements with matching keys.
+- Pass `x` as jSON structure to filter (object, array, or primitive).
+
+**Good:**
+```ts
+filterJsonKeys({ name: 'John', age: 30, city: 'NYC' }, ['name', 'age'])
+// Returns: { name: 'John', age: 30 }
+```
+
+
+**When to apply:**
+- When you are pruning values from arrays or objects.
+
+#### `filterNonNullish<T>(source: T[]): Exclude<T, null | undefined>[]`
+Filters out null and undefined values from an array
+
+**Rules:**
+- Use `filterNonNullish<T>(source: T[]): Exclude<T, null | undefined>[]`.
+- Returns new array with null and undefined values removed.
+- Pass `source` as array to filter.
+
+**Good:**
+```ts
+filterNonNullish([1, null, 2, undefined, 3]) // Returns: [1, 2, 3]
+```
+
+
+**When to apply:**
+- When you are pruning values from arrays or objects.
+
+#### `filterNonNullishKeys<T extends object>(source: T, options?: Options): T`
+Filters out object keys with null, undefined, or empty string values
+
+**Rules:**
+- Use `filterNonNullishKeys<T extends object>(source: T, options?: Options): T`.
+- Returns new object with specified nullish keys removed.
+- Pass `source` as object to filter keys from.
+
+**Good:**
+```ts
+filterNonNullishKeys({ a: 1, b: null, c: undefined, d: 'hello' })
+// Returns: { a: 1, d: 'hello' }
+```
+
+
+**When to apply:**
+- When you are pruning values from arrays or objects.
+
+#### `removeValueByKeyInObject<T extends Record<string | number, any>>(v: T, key: (string | number) | (string | number)[]): T`
+Removes specified keys from an object and returns a new object
+
+**Rules:**
+- Use `removeValueByKeyInObject<T extends Record<string | number, any>>(v: T, key: (string | number) | (string | number)[]): T`.
+- Returns new object with specified keys removed.
+- Pass `v` as object to remove keys from.
+
+**Good:**
+```ts
+removeValueByKeyInObject({ a: 1, b: 2, c: 3 }, 'b') // Returns: { a: 1, c: 3 }
+```
+
+
+**When to apply:**
+- When you are pruning values from arrays or objects.
+
+### Number
+
+#### `numberWithComma(x?: number): string`
+Adds comma separators to a number for better readability
+
+**Rules:**
+- Use `numberWithComma(x?: number): string`.
+- Returns formatted number string with comma separators, empty string if invalid.
+- Pass `x` as number to format with commas (optional).
+
+**Good:**
+```ts
+numberWithComma(1234567) // Returns: '1,234,567'
+```
+
+
+**When to apply:**
+- When you are formatting or constraining numeric values.
+
+#### `padZero(number: number | undefined, len?: number): string`
+Pads a number with leading zeros to reach the specified length
+
+**Rules:**
+- Use `padZero(number: number | undefined, len?: number): string`.
+- Returns zero-padded string, empty string if number is invalid.
+- Pass `number` as number to pad with zeros (optional).
+
+**Good:**
+```ts
+padZero(5) // Returns: '05'
+padZero(5, 3) // Returns: '005'
+```
+
+
+**When to apply:**
+- When you are formatting or constraining numeric values.
+
+#### `toFixed(number: number | undefined, fractionDigits: number, defaultString?: string): string`
+Safely formats a number to a specified number of decimal places
+
+**Rules:**
+- Use `toFixed(number: number | undefined, fractionDigits: number, defaultString?: string): string`.
+- Returns formatted number string or default string.
+- Pass `number` as number to format (optional).
+
+**Good:**
+```ts
+toFixed(3.14159, 2) // Returns: '3.14'
+toFixed(5, 0) // Returns: '5'
+```
+
+
+**When to apply:**
+- When you are formatting or constraining numeric values.
+
+#### `toFixedIfNeed(number: number | undefined, fractionDigits: number, defaultString?: string): string`
+Formats a number to a fixed decimal places, removing trailing zeros
+
+**Rules:**
+- Use `toFixedIfNeed(number: number | undefined, fractionDigits: number, defaultString?: string): string`.
+- Returns formatted number string with trailing zeros removed.
+- Pass `number` as number to format (optional).
+
+**Good:**
+```ts
+toFixedIfNeed(3.1000, 4) // Returns: '3.1'
+toFixedIfNeed(5.0, 2) // Returns: '5'
+```
+
+
+**When to apply:**
+- When you are formatting or constraining numeric values.
+
+#### `toSiUnitString(n: number): string`
+Converts a number to a readable string with SI unit suffixes (K, M)
+
+**Rules:**
+- Use `toSiUnitString(n: number): string`.
+- Returns string representation with SI unit suffixes, empty string if invalid.
+- Pass `n` as number to convert to SI unit string.
+
+**Good:**
+```ts
+toSiUnitString(1500) // Returns: '1.5K'
+toSiUnitString(2500000) // Returns: '2.5M'
+```
+
+
+**When to apply:**
+- When you are formatting or constraining numeric values.
+
+#### `clamp(value: number, min: number, max: number): number`
+Clamps a number between a minimum and maximum value
+
+**Rules:**
+- Use `clamp(value: number, min: number, max: number): number`.
+- Returns the clamped value between min and max.
+- Pass `value` as the number to clamp.
+
+**Good:**
+```ts
+clamp(5, 0, 10) // Returns: 5
+clamp(-5, 0, 10) // Returns: 0
+clamp(15, 0, 10) // Returns: 10
+```
+
+
+**When to apply:**
+- When you are formatting or constraining numeric values.
+
+### Time
+
+#### `setIntervalWithTimeout(callback: (clear: () => void) => any, intervalMs: number): () => void`
+Creates a repeating timeout that can be cleared from within the callback
+
+**Rules:**
+- Use `setIntervalWithTimeout(callback: (clear: () => void) => any, intervalMs: number): () => void`.
+- Returns function to clear the interval.
+- Pass `callback` as function to execute at each interval, receives clear function.
+
+**Good:**
+```ts
+const stop = setIntervalWithTimeout((clear) => {
+  console.log('Running...')
+  if (someCondition) clear()
+}, 1000)
+```
+
+
+**When to apply:**
+- When you are parsing, formatting, or scheduling time-based behavior.
+
+#### `TimeoutHandler.clear(): void`
+Clears the current timeout and marks the handler as cleared.
+
+**Rules:**
+- Use `TimeoutHandler.clear(): void`.
+- Returns `void`.
+
+**Good:**
+```ts
+const handler = new TimeoutHandler()
+handler.clear()
+```
+
+
+**When to apply:**
+- When you are parsing, formatting, or scheduling time-based behavior.
+
+#### `parseSecond(totalSecond?: number): Result`
+Parses total seconds into structured time components
+
+**Rules:**
+- Use `parseSecond(totalSecond?: number): Result`.
+- Returns object containing parsed time values (days, hours, minutes, seconds).
+- Pass `totalSecond` as total seconds to parse (optional).
+
+**Good:**
+```ts
+parseSecond(3661) // Returns: { totalDay: 0, totalHour: 1, totalMinute: 61, onlyHour: 1, onlyMinute: 1, onlySecond: 1 }
+```
+
+
+**When to apply:**
+- When you are parsing, formatting, or scheduling time-based behavior.
+
+#### `SecFormat.get(type: SecFormats): Formatter`
+Returns the formatter for the given second format.
+
+**Rules:**
+- Use `SecFormat.get(type: SecFormats): Formatter`.
+- Returns `Formatter`.
+
+**Good:**
+```ts
+const formatter = SecFormat.get('mm:ss')
+formatter(90) // Returns: '01:30'
+```
+
+
+**When to apply:**
+- When you are parsing, formatting, or scheduling time-based behavior.
+
+#### `SecFormat.format(totalSeconds: number, type: SecFormats): string`
+Formats total seconds with the given second format.
+
+**Rules:**
+- Use `SecFormat.format(totalSeconds: number, type: SecFormats): string`.
+- Returns `string`.
+
+**Good:**
+```ts
+SecFormat.format(3661, 'hh:mm:ss') // Returns: '01:01:01'
+```
+
+
+**When to apply:**
+- When you are parsing, formatting, or scheduling time-based behavior.
+
+#### `SecFormat.invalidateIntervalSec(type: SecFormats): number`
+Returns the cache invalidation interval for the given second format.
+
+**Rules:**
+- Use `SecFormat.invalidateIntervalSec(type: SecFormats): number`.
+- Returns `number`.
+
+**Good:**
+```ts
+SecFormat.invalidateIntervalSec('mm:ss') // Returns: 1
+```
+
+
+**When to apply:**
+- When you are parsing, formatting, or scheduling time-based behavior.
+
+#### `formatSec(totalSeconds: number, type: SecFormats): string`
+Alias for SecFormat.format - formats seconds into time string
+
+**Rules:**
+- Use `formatSec(totalSeconds: number, type: SecFormats): string`.
+- Returns formatted time string.
+- Pass `totalSeconds` as total seconds to format.
+
+**Good:**
+```ts
+formatSec(3661, 'hh:mm:ss') // Returns: '01:01:01'
+formatSec(90, 'mm:ss') // Returns: '01:30'
+```
+
+
+**When to apply:**
+- When you are parsing, formatting, or scheduling time-based behavior.
+
+#### `createTimer(): { clear: () => void; timeout: (fn: () => void, duration: number, { clear: clearOtherTimers }?: Options) => () => void; }`
+Creates a timer utility that manages multiple timeouts with optional clearing
+
+**Rules:**
+- Use `createTimer(): { clear: () => void; timeout: (fn: () => void, duration: number, { clear: clearOtherTimers }?: Options) => () => void; }`.
+- Returns timer object with timeout and clear methods.
+
+**Good:**
+```ts
+const timer = createTimer()
+timer.timeout(() => console.log('Hello'), 1000)
+timer.clear() // Clears all timeouts
+```
+
+
+**When to apply:**
+- When you are parsing, formatting, or scheduling time-based behavior.
+
+#### `createTimer().clear(): void`
+Clears every timeout created by this timer instance.
+
+**Rules:**
+- Use `createTimer().clear(): void`.
+- Returns `void`.
+
+**Good:**
+```ts
+const timer = createTimer()
+timer.clear()
+```
+
+
+**When to apply:**
+- When you are parsing, formatting, or scheduling time-based behavior.
+
+#### `createTimer().timeout(fn: () => void, duration: number, { clear: clearOtherTimers }?: Options): () => void`
+Schedules a timeout and optionally clears earlier timeouts first.
+
+**Rules:**
+- Use `createTimer().timeout(fn: () => void, duration: number, { clear: clearOtherTimers }?: Options): () => void`.
+- Returns `() => void`.
+
+**Good:**
+```ts
+const timer = createTimer()
+timer.timeout(() => console.log('Hello'), 1000)
+```
+
+
+**When to apply:**
+- When you are parsing, formatting, or scheduling time-based behavior.
+
+### Math
+
+#### `interpolate({ value, inputRange, outputRange, extrapolate, }: { value: number; inputRange: [number, number]; outputRange: [number, number]; extrapolate?: "clamp" | "extend"; }): number`
+Maps a value from one range to another range with optional extrapolation control
+
+**Rules:**
+- Use `interpolate({ value, inputRange, outputRange, extrapolate, }: { value: number; inputRange: [number, number]; outputRange: [number, number]; extrapolate?: "clamp" | "extend"; }): number`.
+- Returns the interpolated value in the output range.
+- Pass `value` as the input value to interpolate.
+
+**Good:**
+```ts
+interpolate({ value: 50, inputRange: [0, 100], outputRange: [0, 1] }) // Returns: 0.5
+interpolate({ value: 150, inputRange: [0, 100], outputRange: [0, 1], extrapolate: 'clamp' }) // Returns: 1
+interpolate({ value: 25, inputRange: [0, 100], outputRange: [100, 0] }) // Returns: 75
+```
+
+
+**When to apply:**
+- When you are mapping numeric ranges or colors.
+
+#### `interpolateColor({ value, inputRange, outputRange, }: { value: number; inputRange: [number, number]; outputRange: [string, string]; }): string`
+Interpolates between two hex colors based on a value within an input range
+
+**Rules:**
+- Use `interpolateColor({ value, inputRange, outputRange, }: { value: number; inputRange: [number, number]; outputRange: [string, string]; }): string`.
+- Returns the interpolated color as a hex string.
+- Pass `value` as the input value to interpolate color for.
+
+**Good:**
+```ts
+interpolateColor({ value: 50, inputRange: [0, 100], outputRange: ['#ff0000', '#00ff00'] }) // Returns: '#808000'
+interpolateColor({ value: 0, inputRange: [0, 100], outputRange: ['#000000', '#ffffff'] }) // Returns: '#000000'
+interpolateColor({ value: 100, inputRange: [0, 100], outputRange: ['#000000', '#ffffff'] }) // Returns: '#ffffff'
+```
+
+
+**When to apply:**
+- When you are mapping numeric ranges or colors.
+
+### Misc
+
+#### `formatJson(a: any): string`
+Converts a value to a formatted JSON string representation
+
+**Rules:**
+- Use `formatJson(a: any): string`.
+- Returns formatted string representation of the input value.
+- Pass `a` as value to format as JSON string.
+
+**Good:**
+```ts
+formatJson({ name: 'John', age: 30 }) // Returns: '{\n  "name": "John",\n  "age": 30\n}'
+```
+
+
+**When to apply:**
+- When you need a formatting helper for loose data.

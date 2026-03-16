@@ -62,8 +62,27 @@ function lz(number: number | undefined, len = 2): string {
  * SecFormat.format(125, 'mm:ss') // Returns: '02:05'
  */
 export const SecFormat = {
+  /**
+   * Returns the formatter for the given second format.
+   *
+   * @example
+   * const formatter = SecFormat.get('mm:ss')
+   * formatter(90) // Returns: '01:30'
+   */
   get: (type: SecFormats): Formatter => Formatters[type] || Formatters['hh:mm:ss'],
+  /**
+   * Formats total seconds with the given second format.
+   *
+   * @example
+   * SecFormat.format(3661, 'hh:mm:ss') // Returns: '01:01:01'
+   */
   format: (totalSeconds: number, type: SecFormats) => SecFormat.get(type)(totalSeconds),
+  /**
+   * Returns the cache invalidation interval for the given second format.
+   *
+   * @example
+   * SecFormat.invalidateIntervalSec('mm:ss') // Returns: 1
+   */
   invalidateIntervalSec: (type: SecFormats) => InvalidateIntervalSeconds[type] || 60,
 };
 

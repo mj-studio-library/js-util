@@ -25,12 +25,26 @@ type Options = {
 export function createTimer() {
   const handlers: any[] = [];
 
+  /**
+   * Clears every timeout created by this timer instance.
+   *
+   * @example
+   * const timer = createTimer()
+   * timer.clear()
+   */
   const clear = () => {
     handlers.forEach(clearTimeout);
   };
 
   return {
     clear,
+    /**
+     * Schedules a timeout and optionally clears earlier timeouts first.
+     *
+     * @example
+     * const timer = createTimer()
+     * timer.timeout(() => console.log('Hello'), 1000)
+     */
     timeout: (
       fn: () => void,
       duration: number,

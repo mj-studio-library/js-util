@@ -5,14 +5,23 @@ export class TimeoutHandler {
   private handlerRef: { id: any } = { id: -1 };
   cleared = false;
 
+  /** Returns the current timeout handle. */
   get handler(): any {
     return this.handlerRef.id;
   }
 
+  /** Stores the current timeout handle. */
   set handler(n: any) {
     this.handlerRef.id = n;
   }
 
+  /**
+   * Clears the current timeout and marks the handler as cleared.
+   *
+   * @example
+   * const handler = new TimeoutHandler()
+   * handler.clear()
+   */
   clear() {
     this.cleared = true;
     if (this.handlerRef.id !== -1) {
